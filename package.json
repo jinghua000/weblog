@@ -1,0 +1,31 @@
+{
+  "name": "weblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinghua000/weblog.git"
+  },
+  "keywords": [
+    "weblog"
+  ],
+  "author": "shadow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jinghua000/weblog/issues"
+  },
+  "homepage": "https://github.com/jinghua000/weblog#readme",
+  "devDependencies": {
+    "chalk": "^3.0.0",
+    "current-path-join": "^0.1.1",
+    "file-set": "^3.0.0",
+    "fs-extra": "^8.1.0",
+    "markdown-utils": "^1.0.0",
+    "shadow-fns": "^0.1.6"
+  }
+}
