@@ -1,11 +1,11 @@
 # currying (柯里化)
 
-## What
+## 是什么
 
 > 在计算机科学中，柯里化（Currying）是把接受多个参数的函数变换成接受一个单一参数(最初函数的第一个参数)的函数，并且返回接受余下的参数且返回结果的新函数的技术。
 > (来自 [百度百科](https://baike.baidu.com/item/%E6%9F%AF%E9%87%8C%E5%8C%96))
 
-## Why
+## 为什么
 
 于是就举一个简单的例子  
 
@@ -47,7 +47,7 @@ const add = x => num => num + x
 
 上述的这个`add`函数，大致就是[shadow-fns](https://github.com/jinghua000/shadow-fns/blob/master/doc/README.md#add)这个函数库中`add`函数的实现思路。
 
-## More
+## 更多
 
 现在我们拥有了一个看上去比较灵活的`add`，但贪婪的我们希望他也能像正常的函数一样调用。
 
@@ -96,7 +96,7 @@ newAdd(1)(2) // => 3 - 他做到了！
 
 但是事实上并不是这样！
 
-## Notice
+## 注意点
 
 ### This的指向
 
@@ -133,7 +133,7 @@ console.log(obj.a) // => 1
 console.log(obj.b) // => 2
 ```
 
-关于`bind`的用法可以参考[最下方](#reference)。
+关于`bind`的用法可以参考[这里](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)。
 
 ### 默认参数和Rest参数
 
@@ -183,7 +183,7 @@ const add1 = add(1)
 // 在其他地方使用这个函数
 ```
 
-## Summary
+## 总结
 
 总而言之currying是一种让函数更为灵活的编程方式，不过在使用的时候也有诸多注意点，让我们和柯里化和睦相处吧。
 
@@ -192,8 +192,7 @@ const add1 = add(1)
 - [lodash](https://lodash.com/docs/4.17.15#curry)
 - [ramda](https://ramdajs.com/docs/#curry)
 
-## Reference
+## 参考
 
-- [Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 - [shadow-fns](https://github.com/jinghua000/shadow-fns/blob/master/doc/README.md#curry)
 - [相关代码](../../code/Javascript/currying.js)

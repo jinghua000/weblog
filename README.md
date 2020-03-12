@@ -1,4 +1,6 @@
-# weblog  
+# weblog
+
+对一些知识做笔记是好习惯。  
 ### Javascript  
 - [currying](./docs/Javascript/currying.md)  
-- [simple-publish-subscribe](./docs/Javascript/simple-publish-subscribe.md)
+- [publish-subscribe](./docs/Javascript/publish-subscribe.md)
