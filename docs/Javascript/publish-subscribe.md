@@ -1,4 +1,4 @@
-# publish-subscribe(发布订阅)
+# publish-subscribe (发布订阅)
 
 ## 是什么
 
