@@ -15,14 +15,14 @@ const data = []
 console.log(chalk.cyan('start build README.md'))
 
 fileSet.dirs.forEach(dir => {
-  data.push(`### ${getFolderName(dir)}`)
-  console.log(chalk.yellow(`category is: ${getFolderName(dir)}`))
+  data.push(`\n### ${getFolderName(dir)}`)
+  console.log(chalk.yellow(`category - ${getFolderName(dir)}`))
 
   fileSet.files.filter(f.includes(dir)).forEach(file => {
 
     const fileName = path.basename(file, '.md')
     data.push(`- ${link(fileName, file)}`)
-    console.log(chalk.magenta(`article title is: ${fileName}`))
+    console.log(chalk.magenta(`article title - ${fileName}`))
 
   })
 })
