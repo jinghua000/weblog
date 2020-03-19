@@ -137,7 +137,10 @@ puts calc2 # => 2
 
 好吧，其实我也没有理解的十分彻底，不过这种实现方式在各种情况下看上去都没有问题。
 
+按照文中的实现方法封装的[gem](https://github.com/jinghua000/proc-to-lambda)。
+
 ## 参考
 
 - https://stackoverflow.com/questions/2946603/ruby-convert-proc-to-lambda
+- [proc-to-lambda](https://github.com/jinghua000/proc-to-lambda)
 - [相关代码](../../code/Ruby/proc-to-lambda.rb)
