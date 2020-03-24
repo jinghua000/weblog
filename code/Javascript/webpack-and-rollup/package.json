@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "build:webpack": "webpack",
+    "build:rollup": "rollup -c"
+  },
+  "devDependencies": {
+    "rollup": "^2.1.0",
+    "rollup-plugin-terser": "^5.3.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
