@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # push to current branch
 
 CURRENT_BRANCH=`git symbolic-ref --short -q HEAD`
