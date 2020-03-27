@@ -8,5 +8,8 @@
 - [publish-subscribe](./docs/Javascript/publish-subscribe.md)  
 - [webpack-and-rollup](./docs/Javascript/webpack-and-rollup.md)  
 
+### Node  
+- [simple-hot-reload](./docs/Node/simple-hot-reload.md)  
+
 ### Ruby  
 - [proc-to-lambda](./docs/Ruby/proc-to-lambda.md)
