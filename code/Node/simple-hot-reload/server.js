@@ -8,5 +8,6 @@ app.listen(8989, () => {
 })
 
 app.get('/hello', function (req, res) {
+  console.log('request hello')
   res.send('f**k you!')
 })
