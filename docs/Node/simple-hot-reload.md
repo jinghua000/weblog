@@ -156,3 +156,27 @@ stdout: request hello
 ```
 
 然后我们的每次文件操作，都相当于他先结束原本的子进程，然后再执行了一遍`node server.js`，于是就实现了更改代码不用自己重启马上生效的效果！
+
+## 总结
+
+这次用了非常简单粗暴的方法实现了热重载，不过事实上如果启动的命令加载的东西较多明显是不合适的，但是对于一些小的服务用这种方式看上去也不是不行。
+
+并且仔细看就能发现这里影响到真正服务的代码只有这一段
+
+```js
+function server () {
+  return spawn('node', ['server.js'])
+}
+```
+
+所以就算运行的不是node服务也没有问题。
+
+> 另外需要注意的是这里为了方便理解使用了`fs.watch`，然而事实上这个原生API似乎并没有那么好用，监听文件的变化可以参考这个库[`chokidar`](https://www.npmjs.com/package/chokidar)。
+
+> 另外如果是单纯的追求文件变化重启服务，那倒也不妨直接尝试这个库[`nodemon`](https://www.npmjs.com/package/nodemon)，提供了比较完备的这方面的功能。
+
+## 参考
+
+- [chokidar](https://www.npmjs.com/package/chokidar)
+- [nodemon](https://www.npmjs.com/package/nodemon)
+- [相关代码](../../code/Node/simple-hot-reload/index.js)
