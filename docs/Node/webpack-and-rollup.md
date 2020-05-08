@@ -172,4 +172,4 @@ export default {
 
 ## 参考
 
-- [相关代码](../../code/Javascript/webpack-and-rollup/index.js)
+- [相关代码](../../code/Node/webpack-and-rollup/package.json)
