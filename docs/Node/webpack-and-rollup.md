@@ -59,7 +59,7 @@ module.exports = {
 
 我们先来打包一个开发（development）模式的试试。
 
-呃...不过这个打包出来的文件，不是人类能看得懂的，大概是长这样。
+呃...不过这个打包出来的文件，虽然能够大概看出结构，不是里面的内容不是人类能看得懂的，大概是长这样。
 
 ```js
 // ...
@@ -143,7 +143,7 @@ export default {
 })));
 ```
 
-然后我们也来试一下生产模式，不过需要说明的是rollup的生产模式并不是像webpack那么方便一句话就改好了的，需要借助一些插件。我们这里选择[teser](https://github.com/TrySound/rollup-plugin-terser)这个压缩插件。用法可以参考官方文档。
+然后我们也来试一下生产模式，不过需要说明的是rollup的生产模式并不是像webpack那么方便一句话就改好了的，需要借助一些插件。我们这里选择[terser](https://github.com/TrySound/rollup-plugin-terser)这个压缩插件。用法可以参考官方文档。
 
 然后来看一下最终打包的结果。
 
@@ -172,4 +172,4 @@ export default {
 
 ## 参考
 
-- [相关代码](../../code/Javascript/webpack-and-rollup/index.js)
+- [相关代码](../../code/Node/webpack-and-rollup)
