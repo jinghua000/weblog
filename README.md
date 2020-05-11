@@ -13,4 +13,5 @@
 - [webpack-and-rollup](./docs/Node/webpack-and-rollup.md)  
 
 ### Ruby  
+- [heredocs](./docs/Ruby/heredocs.md)  
 - [proc-to-lambda](./docs/Ruby/proc-to-lambda.md)
