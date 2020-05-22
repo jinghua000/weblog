@@ -1,0 +1,14 @@
+<!-- injected.html -->
+<!-- 因为依赖socket.io，所以姑且先给个标识之后替换掉吧 -->
+<script src="$__socket_path__$"></script>
+<script>
+  var socket = io('http://127.0.0.1:3001')
+  socket.on('connect', function () {
+
+    socket.on('event', function (data) {
+      // 如果收到 action 为 reload 的事件则刷新页面
+      data.action === 'reload' && window.location.reload()
+    })
+
+  })
+</script>
