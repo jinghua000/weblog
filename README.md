@@ -8,6 +8,7 @@
 - [publish-subscribe](./docs/Javascript/publish-subscribe.md)  
 
 ### Node  
+- [simple-client-hot-reload](./docs/Node/simple-client-hot-reload.md)  
 - [simple-hot-reload](./docs/Node/simple-hot-reload.md)  
 - [simple-pack](./docs/Node/simple-pack.md)  
 - [webpack-and-rollup](./docs/Node/webpack-and-rollup.md)  
