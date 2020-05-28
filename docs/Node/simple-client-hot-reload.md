@@ -6,7 +6,7 @@
 
 现有的库类似[webpack-dev-server](https://github.com/webpack/webpack-dev-server)，[live-server](https://github.com/tapio/live-server)都有类似的效果，当然他们的功能都更为强大。
 
-> 我们这次要做的仅仅只是代码变化`reload`前端页面，并不包括[模块替换](https://webpack.js.org/guides/hot-module-replacement/)，那么开始吧。
+> 我们这次要做的仅仅只是代码变化`reload`前端页面，并不包括[模块替换](https://webpack.js.org/concepts/hot-module-replacement/)，那么开始吧。
 
 ## 目标
 
@@ -265,7 +265,7 @@ something else... www
 
 这次简单的实现了一个前端热重载的效果，当然因为只是为了做例子，使用的是最基本的实现方式，还有很多逻辑没有判断到。不过这样一来，大概也知道了数据的流动形式了，总而言之就是 `启动两个服务 -> 通过WebSocket把前后端结合起来`，可喜可贺。
 
-并且实际开发中，比较常用的还是[模块热替换(hot-module-replacement)](https://webpack.js.org/guides/hot-module-replacement/)，有兴趣的话可以去了解一下。
+并且实际开发中，比较常用的还是[模块热替换(hot-module-replacement)](https://webpack.js.org/concepts/hot-module-replacement/)，有兴趣的话可以去了解一下。
 
 ## 参考
 
