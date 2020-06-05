@@ -9,12 +9,13 @@ const child_procss = require('child_process')
 const fs = require('fs')
 const http = require('http')
 
+const server = http.createServer()
+const io = socket(server)
+
 // 需要注入的代码
 const INJECTED_CODE = fs.readFileSync(path.join(__dirname, 'injected.html'), 'utf-8')
 // socket.io 前端依赖路径
 const SOCKET_PATH = path.join(__dirname, './node_modules/socket.io-client/dist/socket.io.dev.js')
-// 把所有客户端对象存在一个 Set 里
-const clientSockets = new Set()
 
 // 静态服务
 function staticServer (entry, index = 'index.html') {
@@ -53,19 +54,8 @@ function staticServer (entry, index = 'index.html') {
 }
 
 function socketServer () {
-  const server = http.createServer()
-  const io = socket(server)
-
-  io.on('connection', client => {
-    // 连接时加入储存
-    clientSockets.add(client)
-    console.log('client connected', clientSockets.size)
-
-    // 断开时从储存中删除
-    client.on('disconnect', () => {
-      clientSockets.delete(client)
-      console.log('client disconnected', clientSockets.size)
-    })
+  io.on('connection', () => {
+    console.log('client connected!')
   })
 
   server.listen(3001, () => {
@@ -77,10 +67,10 @@ function watchEvents (entry) {
   // 这里只是简单的监听一下变化事件
   chokidar.watch(entry).on('change', () => {
 
-    // 去给所有客户端发送WebSocket消息
-    clientSockets.forEach(client => client.emit('event', {
+    // 给所有客户端发送WebSocket消息
+    io.emit('event', {
       action: 'reload'
-    }))
+    })
 
   })
 }

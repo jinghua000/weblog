@@ -178,23 +178,12 @@ something else...
 ### WebSocket服务
 
 ```js
-// 把所有客户端对象存在一个 Set 里
-const clientSockets = new Set()
+const server = http.createServer()
+const io = socket(server)
 
 function socketServer () {
-  const server = http.createServer()
-  const io = socket(server)
-
-  io.on('connection', client => {
-    // 连接时加入储存
-    clientSockets.add(client)
-    console.log('client connected', clientSockets.size)
-
-    // 断开时从储存中删除
-    client.on('disconnect', () => {
-      clientSockets.delete(client)
-      console.log('client disconnected', clientSockets.size)
-    })
+  io.on('connection', () => {
+    console.log('client connected!')
   })
 
   server.listen(3001, () => {
@@ -205,9 +194,7 @@ function socketServer () {
 socketServer()
 ```
 
-好了我们现在写好了一个简易的`WebSocket`服务，单纯的把那些客户端放到了一个储存空间里供之后使用。
-
-然后我们再执行`node .`访问页面的时候，切换到`NetWork` `WS`那一栏已经可以看到链接建立了，接下来就是要去使用他 —— 监听文件变化的时候去刷新前端页面。
+好了我们现在写好了一个简易的`WebSocket`服务，然后我们再执行`node .`访问页面的时候，切换到`NetWork` `WS`那一栏已经可以看到链接建立了，接下来就是要去使用他 —— 监听文件变化的时候去刷新前端页面。
 
 ### 监听文件
 
@@ -216,10 +203,10 @@ function watchEvents (entry) {
   // 这里只是简单的监听一下变化事件
   chokidar.watch(entry).on('change', () => {
 
-    // 去给所有客户端发送WebSocket消息
-    clientSockets.forEach(client => client.emit('event', {
+    // 给所有客户端发送WebSocket消息
+    io.emit('event', {
       action: 'reload'
-    }))
+    })
 
   })
 }
