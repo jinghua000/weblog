@@ -54,6 +54,8 @@ document.body.appendChild(element)
 
 if (module.hot) {
   module.hot.accept('./component', function () {
+    console.log('something change!')
+    
     document.body.removeChild(element)
     element = component()
     document.body.appendChild(element)
@@ -306,12 +308,9 @@ new Promise(resolve => {
 
   socket.on('connect', () => {
 
-    // 监听刷新页面事件
-    socket.on('event', (data) => {
-      if (data.action === 'reload') {
-        return window.location.reload()
-      }
-
+    // 监听刷新事件
+    socket.on('reload', () => {
+      window.location.reload()
     })
 
   })
@@ -346,9 +345,7 @@ function watchEvents (watchDir) {
     console.log('file change:', path)
 
     repack()
-    io.emit('event', {
-      action: 'reload',
-    })
+    io.emit('reload')
 
   })
 }
@@ -439,3 +436,170 @@ this is a component with foo and bar
 好了，上面的内容事实上差不多算是对前两篇文章[`simple-pack`](./simple-pack.md)和[`simple-client-hot-reload`](./simple-client-hot-reload.md)的整合，总而言之先休息一会……  
 
 好了，然后接下来终于要开始实现`hmr`了。
+
+### 3. 注册hmr回调函数
+
+回想一下一开始的代码
+
+```js
+// ...
+
+if (module.hot) {
+  module.hot.accept('./component', function () {
+    console.log('something change!')
+
+    document.body.removeChild(element)
+    element = component()
+    document.body.appendChild(element)
+  })
+}
+```
+
+这里模仿了`webpack`的接口模式写了一个热更新函数注册，其意义（稍微有点绕）应该是
+
+> 当`./component`以及他的依赖 以及 依赖的依赖（循环）内容发生改变时，重新打包`被改变的文件`，然后重新加载`被改变的文件`， 以及 依赖被改变的文件 的文件，以及依赖 依赖被改变的文件 的文件（循环）。最后加载完最新的代码之后，执行绑定的回调函数。
+
+这样之后看上去能够通过回调函数去局部的执行我们想要执行的代码。
+
+首先按照这个接口的形状来实现第一步
+
+> 把回调函数与`./component`以及他的所有下层依赖做一个绑定
+
+需要修改的是`injected.js`里的`__require__`方法。
+
+> injected.js
+
+```js
+// ...
+
+// 储存 热更新回调函数 以及 对应的变化文件数组
+const hotMap = new Map()
+
+// 用递归的方式 获得一个文件及其所有下级依赖
+function generateDepsArray (filename, deps = []) {
+  deps.push(filename)
+
+  const mapping = modules[filename][1]
+  const depFiles = Object.values(mapping)
+
+  if (depFiles.length) {
+    depFiles.forEach(depFile => {
+      generateDepsArray(depFile, deps)
+    })
+  }
+
+  return deps
+}
+
+function createHot (mapping) {
+  function accept (dep, callback = () => {}) {
+    // 以 回调函数 为 key, 变化文件数组 为 value
+    hotMap.set(
+      callback, 
+      generateDepsArray(mapping[dep])
+    )
+  }
+
+  return {
+    accept,
+  }
+}
+
+function __require__ (filename) {
+  const [fn, mapping] = modules[filename]
+
+  function require (dep) {
+    return __require__(mapping[dep])
+  }
+
+  const exports = {}
+  const module = {
+    // 创建一个 hot 对象
+    hot: createHot(mapping),
+    exports,
+  }
+
+  fn(require, module, exports)
+
+  return exports
+}
+```
+
+好了，现在我们绑定了回调函数以及所有需要监听变化的文件，但是我们还需要服务端通知我们到底是哪个文件变化了，于是接下来修改服务端相关的文件监听代码。
+
+> server.js
+
+```js
+function watchEvents (watchDir) {
+  chokidar.watch(watchDir).on('change', (path, status) => {
+
+    console.log('file change:', path)
+
+    // 当文件变化时，把 文件 以及 文件的打包代码 传递到前端
+    io.emit('hmr', {
+      key: path,
+      payload: generatePayload(path),
+    })
+
+  })
+}
+```
+
+> `generatePayload`是之前定义好的对单个文件的打包方法，可以往上翻一翻。
+
+另外因为我们打包是以`文件路径名`为`modules`的`key`，所以这里就很方便的直接把变化的文件路径传递到前端就行了，然后顺便把文件的打包代码也一起传递，之后会用到。
+
+另外也要考虑一种情况，就是被修改的模块没有被注册热更新，这个时候我们需要全部刷新（即为重新打包再刷新），所以我们给服务器的`WebSocket`再加一个事件。
+
+```js
+// ...
+
+  io.on('connection', client => {
+    
+    // 如果前端发送完全刷新的信号，则打包之后再通知前端刷新
+    client.on('full-reload', () => {
+      repack()
+      io.emit('reload')
+    })
+
+  })
+```
+
+然后在前端的`WebSocket`做对应的接收处理
+
+> injected.js
+
+```js
+// ...
+
+    // 监听hmr事件
+    socket.on('hmr', (data) => {
+      let hotReload = false
+
+      // 如果在 hotMap 中存在变化的文件则去执行回调函数
+      hotMap.forEach((deps, fn) => {
+        if (deps.includes(data.key)) {
+          hotReload = true
+          fn()
+        }
+      })
+
+      // 如果没有热更新则通知后端需要完整更新
+      if (!hotReload) { 
+        console.log(' no hot reload ')
+        socket.emit('full-reload')
+      }
+    })
+```
+
+好了，这样一来看上去我们把`回调函数`以及`对应的变化文件数组`绑定起来了。
+
+可以去输出一下`hotMap`确认一下，我们这里启动服务后尝试修改一下`./components`下的依赖，以及尝试修改不是其依赖的其他文件，在修改依赖时控制台看到了如下内容。
+
+```
+something change!
+```
+
+这是我们在回调函数里打印的内容，由此可见回调函数被确实执行了。
+
+而在修改其他文件的时候整个页面则会重新打包并刷新。

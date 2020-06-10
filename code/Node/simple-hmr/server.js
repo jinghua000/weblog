@@ -10,13 +10,23 @@ const child_procss = require('child_process')
 const http = require('http')
 
 // custom deps
-const { repack } = require('./pack')
+const { repack, generatePayload } = require('./pack')
 const { SOURCE_DIR, OUT_DIR, BUNDLE_FILE_PATH } = require('./shared')
 
 const server = http.createServer()
 const io = socket(server)
 
 function socketServer () {
+  io.on('connection', client => {
+    
+    // 如果前端发送完全刷新的信号，则打包之后再通知前端刷新
+    client.on('full-reload', () => {
+      repack()
+      io.emit('reload')
+    })
+
+  })
+
   server.listen(3001, () => {
     console.log('socket server start')
   })
@@ -27,9 +37,10 @@ function watchEvents (watchDir) {
 
     console.log('file change:', path)
 
-    repack()
-    io.emit('event', {
-      action: 'reload',
+    // 当文件变化时，把 文件 以及 文件的打包代码 传递到前端
+    io.emit('hmr', {
+      key: path,
+      payload: generatePayload(path),
     })
 
   })
