@@ -197,6 +197,7 @@ function bundle (queue) {
     modules += generateAssetModule(asset)
   })
 
+  // 将一些注入的代码提取到了外部的文件中
   const result = `
 (function(modules) {
 
@@ -208,6 +209,27 @@ __require__("${queue[0].filename}");
 `
 
   return result
+}
+```
+
+> injected.js
+
+```js
+function __require__ (filename) {
+  const [fn, mapping] = modules[filename]
+
+  function require (dep) {
+    return __require__(mapping[dep])
+  }
+
+  const exports = {}
+  const module = {
+    exports,
+  }
+
+  fn(require, module, exports)
+
+  return exports
 }
 ```
 
@@ -245,3 +267,175 @@ module.exports = {
 ```
 
 > 另外这次参考了`webpack`的做法利用到了[`memfs`](https://www.npmjs.com/package/memfs)这个库，把打包的内容存在内存里，可以节省一些文件写入读取的消耗。
+
+### 2. 静态页面、WebSocket服务
+
+根据我们的需要，我们需要一个`WebSocket`服务来让页面与服务端交互，具体的可以参考之前的文章[`simple-client-hot-reload`](./simple-client-hot-reload.md)。
+
+需要注意的是在之前的文章里我们是通过直接在静态页面注入代码，但是这次因为我们直接是生成的打包的文件，所以注入代码就更为轻松了。
+
+在之前的`pack.js`最后生成的代码中的这一段。
+
+```js
+// ...
+  const result = `
+(function(modules) {
+
+${readCode('./injected.js')}
+
+__require__("${queue[0].filename}");
+
+})({${modules}})
+`
+```
+
+在`injected.js`里写我们想要注入的代码就好了。
+
+> injected.js
+
+```js
+// 加载socket.io的依赖
+new Promise(resolve => {
+  const element = document.createElement('script')
+  element.setAttribute('src', '__socket_path__')
+  element.onload = resolve
+
+  document.body.appendChild(element)
+}).then(() => {
+  const socket = window.io('http://127.0.0.1:3001')
+
+  socket.on('connect', () => {
+
+    // 监听刷新页面事件
+    socket.on('event', (data) => {
+      if (data.action === 'reload') {
+        return window.location.reload()
+      }
+
+    })
+
+  })
+})
+```
+
+这次我们依然也使用了[socket.io](https://socket.io/)作为`WebSocket`依赖，动态的加载依赖之后先注册一个刷新事件。
+
+而对于服务器端，就是代理输出文件夹的静态页面，启动`WebSocket`服务，具体的细节和之前的文章一样，这里只做简单介绍。
+
+> server.js
+
+启动一个简单的`WebSocket`服务。
+
+```js
+const server = http.createServer()
+const io = socket(server)
+
+function socketServer () {
+  server.listen(3001, () => {
+    console.log('socket server start')
+  })
+}
+```
+
+这里我们先暂时监听到变化就全部打包然后再刷新，之后我们会替换掉这边。
+
+```js
+function watchEvents (watchDir) {
+  chokidar.watch(watchDir).on('change', (path, status) => {
+
+    console.log('file change:', path)
+
+    repack()
+    io.emit('event', {
+      action: 'reload',
+    })
+
+  })
+}
+```
+
+代理静态页面服务，以及加载`socket.io`依赖，从内存中加载打包文件。
+
+```js
+function staticServer () {
+  const app = express()
+  app.use(express.static(OUT_DIR))
+
+  app.get(BUNDLE_FILE_PATH, (req, res) => {
+    // 从内存中加载不存在的打包文件
+    res.send(
+      memfs.readFileSync(BUNDLE_FILE_PATH, 'utf-8')
+    )
+  })
+
+  app.get('/__socket_path__', (req, res) => {
+    // 加载socket.io依赖
+    res.sendFile(
+      path.join(__dirname, './node_modules/socket.io-client/dist/socket.io.dev.js')
+    )
+  })
+
+  app.listen(3000, () => {
+    console.log('static server run on http://localhost:3000')
+    child_procss.exec('open http://localhost:3000')
+  })
+}
+```
+
+最后对外暴露一个方法
+
+```js
+function run () {
+  // 重新打包所有文件
+  repack()
+
+  // 静态服务
+  staticServer()
+  // WebSocket服务
+  socketServer()
+  // 初始化监听事件
+  watchEvents([SOURCE_DIR, OUT_DIR])
+}
+
+module.exports = {
+  run
+}
+```
+
+好的，从理论上我们现在已经实现了以下功能
+1. 打包`es`形式的`js`代码。
+2. 代理静态页面。
+3. 当有代码变动的时候，重新打包并刷新页面。
+
+来稍微测试一下。
+
+写一个入口文件
+
+> index.js
+
+```js
+const { run } = require('./server')
+
+run()
+```
+
+```bash
+node .
+```
+
+页面上显示
+
+```
+this is the body
+this is a component with foo and bar
+```
+
+看上去成功达成效果了，然后修改任何一个文件都会重新刷新一遍并加载最新的代码。
+
+然后从控制台的`Sources`中也能看到我们的储存在内存中的打包文件。
+
+![`simple-hmr-1`](../../assets/simple-hmr-1.png)
+
+好了，上面的内容事实上差不多算是对前两篇文章[`simple-pack`](./simple-pack.md)和[`simple-client-hot-reload`](./simple-client-hot-reload.md)的整合，总而言之先休息一会……  
+
+好了，然后接下来终于要开始实现`hmr`了。

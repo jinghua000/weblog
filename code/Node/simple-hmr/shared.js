@@ -5,6 +5,10 @@ const fs = require('fs')
 const ENTRY_FILE = './src/index.js'
 // 入口html加载的不存在的js文件
 const BUNDLE_FILE_PATH = `/bundle.js`
+// 源文件路径
+const SOURCE_DIR = './src'
+// 输出路径
+const OUT_DIR = './out'
 
 function readCode (filepath) {
   return fs.readFileSync(filepath, 'utf-8')
@@ -28,6 +32,8 @@ function getDepMap (filename, deps) {
 }
 
 module.exports = {
+  SOURCE_DIR,
+  OUT_DIR,
   ENTRY_FILE,
   BUNDLE_FILE_PATH,
   adaptJS,

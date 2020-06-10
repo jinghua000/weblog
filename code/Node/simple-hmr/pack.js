@@ -7,6 +7,7 @@ const traverse = require('@babel/traverse').default
 const memfs = require('memfs').fs
 
 const { 
+  ENTRY_FILE,
   BUNDLE_FILE_PATH, 
   readCode, 
   getDepMap, 
@@ -103,6 +104,7 @@ function bundle (queue) {
     modules += generateAssetModule(asset)
   })
 
+  // 将一些注入的代码提取到了外部的文件中
   const result = `
 (function(modules) {
 
