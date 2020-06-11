@@ -603,3 +603,213 @@ something change!
 这是我们在回调函数里打印的内容，由此可见回调函数被确实执行了。
 
 而在修改其他文件的时候整个页面则会重新打包并刷新。
+
+但是现在就算回调函数执行了，里面的内容并没有变化。
+
+```js
+// ...
+    document.body.removeChild(element)
+    element = component()
+    document.body.appendChild(element)
+```
+
+其他的代码还是按照原本的内容，并不是我们修改后的内容执行的，这是必然，毕竟我们还没有加载新的打包代码，所以接下来要进行的就是，模块替换。
+
+### 4. 模块替换
+
+在前端`WebSocket`接收到后台发来的单个文件的打包的内容的时候，我们可以再加一个简单的处理。
+
+```js
+// ...
+
+    // 监听hmr事件
+    socket.on('hmr', (data) => {
+      let hotReload = false
+      // 把最新打包的代码替换modules对象
+      modules[data.key] = eval(data.payload)
+
+```
+
+因为我们是以文件名为`modules`对象的`key`，所以看上去这一步可以十分方便的执行。
+
+不过即便如此还是没有用，因为`modules`对象虽然变化了，但是在那之前文件已经全部加载完了，所以我们这个时候需要再加载一遍相关文件，也就是对他们分别进行`__require__`方法。
+
+具体我们要加载的文件描述起来应该是
+
+> 被改变的文件，以及 依赖被改变的文件 的文件，以及依赖 依赖被改变的文件 的文件（循环）。
+
+这样加载的话就能把所有相关的文件重新加载而不去加载其他不相关的文件。
+
+但是这样一来就会又涉及到其他问题。
+
+回想一下我们之前`__require__`方法。
+
+```js
+// function __require__
+// ...
+
+  const exports = {}
+  const module = {
+    // 创建一个 hot 对象
+    hot: createHot(mapping),
+    exports,
+  }
+
+  fn(require, module, exports)
+```
+
+这里我们为了在浏览器环境去模拟加载了`module`和`exports`。
+
+- `module`相当于对单个文件的扩展。
+
+- `exports`相当于单个文件的模块输出。
+
+对于`exports`，我们先来稍微看一下`babel`编译后的`cjs`代码，大概可以表现为以下样子。
+
+```js
+var foo = require('./foo').default
+
+// ...
+```
+
+这里的`foo`相当于是`./foo`模块`exports`对象的`default`属性，而一个文件模块的执行就相当于去给`exports`对象赋值。
+
+而重新加载就是重新执行`__require__`方法，所以如果每次都新建一个对象，那么旧的对象的属性将不会改变。
+
+而对于`hmr`来说，最终执行回调函数的文件是`不会重新加载`的，取而代之是执行回调函数，所以使用的一定是旧的对象。
+
+所以我们需要把`exports`对象提取到外面而不是每次新建。
+
+```js
+const exportsMap = new Map()
+
+// function __require__
+// ...
+
+  // 如果存在当前文件的 exports 对象则取得否则新建
+  let exports = exportsMap.get(filename)
+  if (!exports) {
+    exports = {}
+    exportsMap.set(filename, exports)
+  }
+
+  // 清空对象
+  for (let key in exports) { 
+    delete exports[key] 
+  }
+```
+
+这里使用了`Map`不过当然使用普通的对象也可以，总而言之这样一来每个文件的`exports`就都存在了一个固定的地方，多次加载也仅仅只是改变单个对象的属性。
+
+另外一方面因为要重新加载相关文件，那么在加载相关文件的时候相关文件还会再加载自己的依赖，但这事实上是没有必要的，因为所有需要重新加载的文件我们已经确定了，所以我们还需要一个全局的对象去判断一个模块`是否有加载过`。
+
+```js
+const installedModulesMap = new Map()
+
+// function __require__
+// ...
+
+  // 如果已经加载过的文件则直接返回他的 exports 对象
+  if (installedModulesMap.get(filename)) {
+    return installedModulesMap.get(filename).exports
+  }
+
+  // ...
+  const module = {
+    // 创建一个 hot 对象
+    hot: createHot(mapping),
+    exports,
+  }
+
+  // 设置为已加载的文件
+  installedModulesMap.set(filename, module)
+```
+
+好了，这样一来一个模块就只会加载一次不会重复加载了，最后我们在`WebSocket`监听到`hmr`事件的时候去加载需要重新加载的模块。
+
+```js
+// ...
+
+    // 监听hmr事件
+    socket.on('hmr', (data) => {
+      let hotReload = false
+      // 把最新打包的代码替换modules对象
+      modules[data.key] = eval(data.payload)
+
+      // 如果在 hotMap 中存在变化的文件则去执行回调函数
+      hotMap.forEach((deps, fn) => {
+        if (deps.includes(data.key)) {
+          hotReload = true
+
+          // 获取需要重新加载的文件
+          // 变化的文件 以及 依赖了变化的文件的文件 以及 依赖了 依赖了变化的文件的文件 的文件 ...
+          const needReloadDeps = generateParentsArray(data.key, deps)
+          console.log(
+            `following files reloaded: \n- ${needReloadDeps.join('\n- ')}`
+          )
+          
+          needReloadDeps.forEach(dep => {
+            // 删除需要加载的文件
+            installedModulesMap.delete(dep)
+            __require__(dep)
+          })
+
+          fn()
+        }
+      })
+
+      // 如果没有热更新则通知后端需要完整更新
+      if (!hotReload) { 
+        console.log(' no hot reload ')
+        socket.emit('full-reload')
+      }
+    })
+
+// ...
+
+// 用递归的方式取得一个文件以及所选集合中与此文件有关联的文件
+function generateParentsArray (filename, deps = [], parents = []) {
+  parents.push(filename)
+
+  deps.filter(
+    dep => Object.values(
+      modules[dep][1]
+    ).includes(filename)
+  ).forEach(
+    dep => generateParentsArray(dep, deps, parents)
+  )
+
+  return parents 
+}
+```
+
+好了，接下来来测试一下，首先启动服务之后打开`console`看到的是这样的情况。
+
+```
+foo loaded
+bar loaded
+component loaded
+index loaded
+```
+
+然后稍微修改一下`foo`里面的代码，改变输出值，然后`console`里的改变如下。
+
+```
+following files reloaded: 
+- src/foo.js
+- src/component.js
+foo loaded
+component loaded
+something change!
+```
+
+可以看到只有相关的`foo`和`component`两个文件重新加载了，而没有涉及到变化的`bar`并没有加载。
+
+而在页面上，回调函数里的代码也确实用最新的代码执行了，替换掉了原本的`dom`。
+
+```
+this is the body
+this is a component with foo 123 and bar
+```
+
+看上去！这样一来已经实现了一个简单的`hmr`效果。
