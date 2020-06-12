@@ -1,6 +1,6 @@
 # Changelog
 
-### 2020-06-10
+### 2020-06-12
 
 - [simple-hmr](./docs/Node/simple-hmr.md)  
 

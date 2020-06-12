@@ -541,6 +541,9 @@ function watchEvents (watchDir) {
       payload: generatePayload(path),
     })
 
+    // 然后再重新打包一次文件保证内存里文件是最新的，不过对前端没有影响
+    repack()
+
   })
 }
 ```
@@ -813,3 +816,18 @@ this is a component with foo 123 and bar
 ```
 
 看上去！这样一来已经实现了一个简单的`hmr`效果。
+
+## 总结
+
+总结一下实现思路就是，打包 -> 代理页面 -> 监听变化 -> 局部打包 -> 模块替换。
+
+说到底这篇文章只是做了一个`hmr`的样子，具体细节还有很多没有完善的地方，不过我们的目的是了解一种`hmr`的实现方式，所以其他那些就不管啦，毕竟真的要用的话可以直接去使用强大的`webpack`。
+
+那么到此为止！
+
+## 参考
+
+- [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/)
+- [`simple-pack`](./simple-pack.md)
+- [`simple-client-hot-reload`](./simple-client-hot-reload.md)
+- [相关代码](../../code/Node/simple-hmr)

@@ -43,6 +43,9 @@ function watchEvents (watchDir) {
       payload: generatePayload(path),
     })
 
+    // 然后再重新打包一次文件保证内存里文件是最新的，不过对前端没有影响
+    repack()
+
   })
 }
 
