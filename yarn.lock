@@ -175,10 +175,10 @@ path-is-absolute@^1.0.0:
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
 
-shadow-fns@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/shadow-fns/-/shadow-fns-0.1.6.tgz#63980091e1da20e053bc19bd0868c9c855055dff"
-  integrity sha512-zmvtDj6LVKPsEiI/QCCRJM6kL61Za9mxbc0NeIfFzkf2FCcMNcXBzqYfBsaS0GyWtqw9A5Uq5iGff92LJO7uJg==
+shadow-fns@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/shadow-fns/-/shadow-fns-0.1.8.tgz#3252e40f7c98388df7180d857ac65adbe3913c92"
+  integrity sha512-Ykc071MXT3kCSUewpRd+hbU/PJddqOgu6SJsxPXpOYCgYShCS9LYO0BS8vuP0W7yp/G4CToscx7T/JBI5YHQ6g==
 
 supports-color@^7.1.0:
   version "7.1.0"

@@ -1,3 +1,3 @@
 # weblog
 
-对一些知识做笔记是好习惯。
+用来记录一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。

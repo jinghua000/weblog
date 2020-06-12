@@ -26,6 +26,6 @@
     "file-set": "^3.0.0",
     "fs-extra": "^8.1.0",
     "markdown-utils": "^1.0.0",
-    "shadow-fns": "^0.1.6"
+    "shadow-fns": "^0.1.8"
   }
 }
