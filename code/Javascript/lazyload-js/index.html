@@ -1,0 +1,29 @@
+<body>
+  <button onclick="clickMe()">Click Me!</button>
+  <script>
+    
+    function clickMe () {
+      lazyLoad('./code.js')
+        .then(() => console.log(code))
+    }
+
+    // 设定一个已经加载过的js文件集合
+    const installedModules = new Set()
+    function lazyLoad (dep) {
+      // 如果已经加载过就停止
+      if (installedModules.has(dep)) return Promise.resolve()
+
+      installedModules.add(dep)
+      // 动态插入一个script标签，返回一个Promise
+      return new Promise(resolve => {
+        const elem = document.createElement('script')
+
+        elem.src = dep
+        elem.onload = resolve
+
+        document.body.appendChild(elem)
+      })
+    }
+
+  </script>
+</body>
