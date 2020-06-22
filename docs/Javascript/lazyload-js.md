@@ -48,7 +48,7 @@ window.code = 'i am code'
       if (installedModules.has(dep)) return Promise.resolve()
 
       installedModules.add(dep)
-      // 动态插入一个script标签，返回一个Promise
+      // 动态插入一个script标签，返回Promise
       return new Promise(resolve => {
         const elem = document.createElement('script')
 
@@ -78,4 +78,13 @@ i am code
 
 加载出了文件的内容，并且文件内部的赋值也生效了，可喜可贺。
 
-然后在看
+然后确认一下控制台的`Sources`模块，也加载出了一开始没有的`code.js`文件。
+
+## 总结
+
+总而言之这次了解了一下最基本的按需加载的原理，结合`webpack`使用的话，参考之前的[`simple-pack`](../Node/simple-pack.md)这篇文章，在打包的时候把所有需要按需加载的文件分开打包成不同的`js`文件，然后通过`import`之类的自定义接口去按需加载这些内容，嘛，原理和打包是差不多的，这里暂时就不去尝试实现了，再见！
+
+## 参考
+
+- [`simple-pack`](../Node/simple-pack.md)
+- [相关代码](../../code/Javascript/lazyload-js)
