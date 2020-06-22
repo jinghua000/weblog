@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-06-22
+
+- [lazyload-js](./docs/Javascript/lazyload-js.md)  
+
 ### 2020-06-12
 
 - [simple-hmr](./docs/Node/simple-hmr.md)  
