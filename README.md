@@ -2,6 +2,9 @@
 
 用来记录一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。  
 
+### HTTP  
+- [gzip](./docs/HTTP/gzip.md)  
+
 ### Javascript  
 - [currying](./docs/Javascript/currying.md)  
 - [debounce-and-throttle](./docs/Javascript/debounce-and-throttle.md)  
