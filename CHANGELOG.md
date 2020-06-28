@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-06-28
+
+- [gzip](./docs/HTTP/gzip.md)
+
 ### 2020-06-22
 
 - [lazyload-js](./docs/Javascript/lazyload-js.md)  
