@@ -2,6 +2,9 @@
 
 用来记录一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。  
 
+### CSS  
+- [theme](./docs/CSS/theme.md)  
+
 ### HTTP  
 - [gzip](./docs/HTTP/gzip.md)  
 

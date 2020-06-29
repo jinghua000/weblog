@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme</title>
+  <style>
+    .theme1 {
+      --background: white;
+      --title: blue;
+      --btn: dimgray;
+    }
+
+    .theme2 {
+      --background: lightblue;
+      --title: black;
+      --btn: red;
+    }
+
+    .theme3 {
+      --background: wheat;
+      --title: darkcyan;
+      --btn: darkorchid;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background-color: var(--background);
+      transition: .2s;
+    }
+
+    .container {
+      height: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container .title {
+      color: var(--title);
+    }
+
+    .container .btn {
+      color: var(--btn);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">
+      This is the title.
+    </h1>
+    <button onclick="change()" class="btn">Change!</button>
+  </div>
+</body>
+<script>
+
+  let index = 1
+  // 设置为当前序号的主题，再设置序号到下一个
+  function change () {
+    document.body.className = `theme${index}`
+    index = index < 3 ? ++index : 1
+  }
+
+  // 默认加载第一个主题
+  change()
+
+</script>
+</html>

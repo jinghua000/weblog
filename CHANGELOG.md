@@ -2,7 +2,7 @@
 
 ### 2020-06-28
 
-- [gzip](./docs/HTTP/gzip.md)
+- [gzip](./docs/HTTP/gzip.md)  
 
 ### 2020-06-22
 
