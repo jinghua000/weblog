@@ -91,3 +91,18 @@ function change () {
 // 默认加载第一个主题
 change()
 ```
+
+然后最终的效果看上去是这样！
+
+![css-theme-1](../../assets/css-theme-1.gif)
+
+可喜可贺。
+
+## 总结
+
+这次试用css变量简单的实现了一个主题效果，那么就是这样。
+
+## 参考
+
+- https://zocada.com/dark-and-light-theme-switcher-using-css-variables-and-pure-javascript/
+- [相关代码](../../code/CSS/theme.html)

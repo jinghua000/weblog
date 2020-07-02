@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-07-02
+
+- [theme](./docs/CSS/theme.md)  
+
 ### 2020-06-28
 
 - [gzip](./docs/HTTP/gzip.md)  
