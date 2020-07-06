@@ -431,7 +431,7 @@ this is a component with foo and bar
 
 然后从控制台的`Sources`中也能看到我们的储存在内存中的打包文件。
 
-![`simple-hmr-1`](../../assets/simple-hmr-1.png)
+![`simple-hmr-1`](../../assets/simple-hmr-1.jpg)
 
 好了，上面的内容事实上差不多算是对前两篇文章[`simple-pack`](./simple-pack.md)和[`simple-client-hot-reload`](./simple-client-hot-reload.md)的整合，总而言之先休息一会……  
 
