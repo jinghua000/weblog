@@ -3,6 +3,7 @@
 ### 2020-07-07
 
 - [browser-cache](./docs/HTTP/browser-cache.md)  
+- [cors](./docs/HTTP/cors.md)  
 
 ### 2020-07-02
 

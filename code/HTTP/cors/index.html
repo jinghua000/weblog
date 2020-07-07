@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+
+  request()
+  function request () {
+    const xhr = new XMLHttpRequest()
+
+    xhr.open('PATCH', 'http://127.0.0.1:3001')
+    xhr.setRequestHeader('Accept', 'application/json')
+    // 假装取得json数据
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    // 设定了自定义的Header
+    xhr.setRequestHeader('My-Header', '123');
+    xhr.onload = function (evt) {
+      console.log(evt)
+      console.log(xhr.response)
+    }
+
+    xhr.send()
+  }
+</script>
+</html>
