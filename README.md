@@ -7,6 +7,7 @@
 
 ### HTTP  
 - [browser-cache](./docs/HTTP/browser-cache.md)  
+- [cors](./docs/HTTP/cors.md)  
 - [gzip](./docs/HTTP/gzip.md)  
 
 ### Javascript  
