@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-07-07
+
+- [browser-cache](./docs/HTTP/browser-cache.md)  
+
 ### 2020-07-02
 
 - [theme](./docs/CSS/theme.md)  
