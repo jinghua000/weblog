@@ -12,8 +12,10 @@ const server = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/html; charset=utf-8')
   // res.setHeader('Expires', new Date('2000-01-01'))
   // res.setHeader('Expires', new Date('2077-01-01'))
-  // res.setHeader('Cache-Control', 'max-age=3600')
-  res.setHeader('Cache-Control', 'max-age=0')
+  res.setHeader('Cache-Control', 'max-age=3600')
+  // res.setHeader('Cache-Control', 'max-age=0')
+  // res.setHeader('Last-Modified', new Date('2000-01-01'))
+  // res.setHeader('Last-Modified', new Date('2077-01-01'))
   res.setHeader('ETag', serverTag)
 
   if (req.headers['if-none-match'] === serverTag) {

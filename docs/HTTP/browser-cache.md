@@ -132,7 +132,7 @@ res.setHeader('Cache-Control', 'max-age=10')
 
 协商缓存在强制缓存失效后执行，用到了`Last-Modified / If-Modified-Since`和`Etag / If-None-Match`这两种响应头，`Etag`的优先级也较高，为了方便实现我们这里就先用`Etag`来进行尝试吧。
 
-#### etag
+#### Etag / If-None-Match
 
 我们先引入一个`etag`库，然后对我们的`html`文件生成标识。
 
@@ -166,8 +166,24 @@ if (req.headers['if-none-match'] === serverTag) {
 
 然后在修改`index.html`文件之后，生成出的`ETag`也随之变化，下次刷新时状态码会是`200`，普通请求资源。下下次刷新则又变为`304`。
 
+#### Last-Modified / If-Modified-Since
+
+`Last-Modified`和上面的`Etag`原理差不多，每次响应头`Last-Modified`会缓存在浏览器，然后下次请求的时候`If-Modified-Since`会作为请求头传到服务器，值为`Last-Modified`的值，如果在服务器端判断`Last-Modified`大于`If-Modified-Since`则认为文件已经变化，则返回`200`状态码以及内容，否则返回`304`。
+
+如果和`Etag`同时存在，`Etag`的优先级会更高。
+
+另外`Last-Modified`的时间会受到本地的修改以及只能以秒计，所以之后出现了`Etag`的更准确的缓存。不过`Last-Modified`的性能会比`Etag`更好，毕竟不用根据文件内容生成减少了计算过程。
+
+## 总结
+
+总而言之浏览器会先考虑使用强制缓存，当强制缓存不成功的时候会尝试协商缓存。另外根据观察，在F5刷新，跳转链接，强制刷新或者勾选了`Disable Cache`各种情况下请求头会不一样（主要是`Cache-Control`），所以也会因此影响一些缓存。
+
+然后一般情况下，面对会经常变化的资源设置`Cache-Control: no-cache`，相当于不使用强制缓存，每次去服务器请求看文件是否变化。
+
+然后面对不常变化的资源，会设置类似`Cache-Control: max-age=31536000`的超长强制缓存时间，然后文件后会加上一些动态的字符来区分版本，用来解决更新的问题。
 
 ## 参考
 
 - https://www.jianshu.com/p/54cc04190252
 - https://heyingye.github.io/2018/04/16/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/
+- [相关代码](../../code/HTTP/browser-cache/index.js)
