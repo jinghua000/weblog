@@ -15,6 +15,7 @@
 - [currying](./docs/Javascript/currying.md)  
 - [debounce-and-throttle](./docs/Javascript/debounce-and-throttle.md)  
 - [lazyload-js](./docs/Javascript/lazyload-js.md)  
+- [promise-without-promise](./docs/Javascript/promise-without-promise.md)  
 - [publish-subscribe](./docs/Javascript/publish-subscribe.md)  
 
 ### Node  
