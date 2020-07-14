@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-07-14
+
+- [css-hot-update](./docs/CSS/css-hot-update.md)  
+
 ### 2020-07-07
 
 - [browser-cache](./docs/HTTP/browser-cache.md)  

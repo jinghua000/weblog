@@ -3,6 +3,7 @@
 用来记录一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。  
 
 ### CSS  
+- [css-hot-update](./docs/CSS/css-hot-update.md)  
 - [theme](./docs/CSS/theme.md)  
 
 ### HTTP  
