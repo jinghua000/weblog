@@ -2,6 +2,9 @@
 
 用来记录一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。  
 
+### Algorithm  
+- [dynamic-programming](./docs/Algorithm/dynamic-programming.md)  
+
 ### CSS  
 - [css-hot-update](./docs/CSS/css-hot-update.md)  
 - [theme](./docs/CSS/theme.md)  
@@ -15,8 +18,8 @@
 - [currying](./docs/Javascript/currying.md)  
 - [debounce-and-throttle](./docs/Javascript/debounce-and-throttle.md)  
 - [lazyload-js](./docs/Javascript/lazyload-js.md)  
-- [promise-without-promise](./docs/Javascript/promise-without-promise.md)  
 - [publish-subscribe](./docs/Javascript/publish-subscribe.md)  
+- [todo-promise-without-promise](./docs/Javascript/todo-promise-without-promise.md)  
 
 ### Node  
 - [simple-client-hot-reload](./docs/Node/simple-client-hot-reload.md)  
