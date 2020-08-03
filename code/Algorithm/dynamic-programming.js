@@ -8,9 +8,6 @@ function f (n) {
 
 // console.log('使用递归', f(10))
 
-
-
-
 function calc (n) {
   // 我们通常可以使用数组来代替状态转移方程中的函数，也便于理解
   const dp = []
@@ -42,5 +39,35 @@ function calc2 (n) {
   return sum
 }
 
-console.log('最简化', calc2(10))
+// console.log('最简化', calc2(10))
 
+function rob (nums) {
+  const dp = [0, nums[0]]
+  const len = nums.length
+
+  for (let i = 2; i <= len; i++) {
+    dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1])
+  }
+
+  return dp[len]
+}
+
+// console.log(rob([10,1,5,1]))
+// console.log(rob([10,1,5,10]))
+
+function rob2 (nums) {
+  let a = 0
+  let b = nums[0] || 0
+  let result = b
+
+  for (let i = 2; i <= nums.length; i++) {
+    result = Math.max(b, a + nums[i - 1])
+    a = b
+    b = result 
+  }
+
+  return result 
+}
+
+// console.log(rob2([10,1,5,1]))
+// console.log(rob2([10,1,5,10]))

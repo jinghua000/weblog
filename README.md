@@ -3,6 +3,7 @@
 用来记录一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。  
 
 ### Algorithm  
+- [dynamic-programming-ext](./docs/Algorithm/dynamic-programming-ext.md)  
 - [dynamic-programming](./docs/Algorithm/dynamic-programming.md)  
 
 ### CSS  
