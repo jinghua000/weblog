@@ -4,7 +4,7 @@
 
 ## 参考
 
-- 题目1
-- [相关代码](../../code/Algorithm/dynamic-programming.js)
+- [题目1](https://leetcode-cn.com/problems/maximal-square/)
+- [相关代码](../../code/Algorithm/dynamic-programming-ext.js)
 
 
