@@ -1,5 +1,10 @@
 # Changelog
 
+### 2020-08-06
+
+- [dynamic-programming](./docs/Algorithm/dynamic-programming.md)  
+- [dynamic-programming-ext](./docs/Algorithm/dynamic-programming-ext.md)  
+
 ### 2020-07-14
 
 - [css-hot-update](./docs/CSS/css-hot-update.md)  
