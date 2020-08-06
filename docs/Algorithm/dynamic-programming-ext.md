@@ -1,5 +1,7 @@
 # dynamic-programming-ext (动态规划-附加)
 
+这里是对之前[动态规划](./dynamic-programming.md)的一些补充。
+
 ## 题目1
 
 **题目**
@@ -19,7 +21,7 @@
 输出: 4
 ```
 
-> 输入内容类似 `[["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]`
+> 输入的实际内容为 `[["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]`
 
 **思考**
 
@@ -37,7 +39,7 @@
 如果能考虑到第二种情况的话，那么我们就可以以`某个点为正方形右下角的边长`进行动态规划
 
 ```
-dp(x, y) = min(d(x - 1, y), dp(x, y - 1), dp(x - 1, y - 1)) + 1
+dp(x, y) = min(dp(x - 1, y), dp(x, y - 1), dp(x - 1, y - 1)) + 1
 ```
 
 且当`x`或者`y`为0的时候，`dp(x, y)`的最大值为`1`。
@@ -93,8 +95,50 @@ var maximalSquare = function(matrix) {
 
 这样之后我们就通过动态规划的方式实现了时间复杂度`O(mn)`（遍历了每一个元素）空间复杂度`O(mn)`（创建了一个`mn`大小的二维数组）的算法。
 
+然后我们注意到，每次对一个元素进行计算时，只关系到其`左`，`上`，`左上`的第一个元素，意思就是说只关系到当前这一行数据以及上一行数据，所以我们不需要创建一个`mn`大小的数组，只需要创建两个长度为`n`的数组就可以了。
+
+空间优化的代码如下：
+
+```js
+/**
+ * @param {character[][]} matrix
+ * @return {number}
+ */
+var maximalSquare = function(matrix) {
+  if (!matrix.length) return 0
+
+  // 只创建第一行的动态规划数组
+  const dp = Array(matrix[0].length).fill(0)
+  let max = 0
+
+  for (let x = 0; x < matrix.length; x++) {
+    // 每次遍历下一行之前先复制上一行数组
+    let tmp = [].concat(dp)
+    for (let y = 0; y < matrix[x].length; y++) {
+      if (+matrix[x][y]) {
+
+        if (x === 0 || y === 0) {
+          dp[y] = 1
+        } else {
+          dp[y] = Math.min(dp[y - 1], tmp[y - 1], tmp[y]) + 1
+        }
+        
+      } else {
+        dp[y] = 0
+      }
+
+      max = Math.max(dp[y], max)
+    }
+  }
+
+  return max * max
+};
+```
+
+这样一来空间复杂度就优化成了`O(n)`，当然还有一种方式是可以修改原本数组达到空间复杂度`O(1)`，不过那样会对原始数据进行修改我们这里就不这样做了。
+
+最后我们以时间复杂度`O(mn)`，空间复杂度`O(n)`完成了这道题目。
+
 ## 参考
 
 - [题目1](https://leetcode-cn.com/problems/maximal-square/)
-
-
