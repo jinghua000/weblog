@@ -19,8 +19,8 @@
 - [currying](./docs/Javascript/currying.md)  
 - [debounce-and-throttle](./docs/Javascript/debounce-and-throttle.md)  
 - [lazyload-js](./docs/Javascript/lazyload-js.md)  
+- [promise-implementation](./docs/Javascript/promise-implementation.md)  
 - [publish-subscribe](./docs/Javascript/publish-subscribe.md)  
-- [todo-promise-without-promise](./docs/Javascript/todo-promise-without-promise.md)  
 
 ### Node  
 - [simple-client-hot-reload](./docs/Node/simple-client-hot-reload.md)  
