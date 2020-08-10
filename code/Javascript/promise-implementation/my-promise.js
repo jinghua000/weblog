@@ -8,6 +8,14 @@ const STATUS = {
 
 let id = 0
 
+function isFunc (obj) {
+  return typeof obj === 'function'
+}
+
+function error (err) {
+  console.error(`Uncaught Promise Error "${err}"`)
+}
+
 function resolveCallback (data) {
   if (this.status !== STATUS.pending) return
 
@@ -22,11 +30,11 @@ function resolveCallback (data) {
 function rejecteCallback (data) {
   if (this.status !== STATUS.pending) return
 
-  // setTimeout(() => {
-  //   this.value = data
-  //   this.status = STATUS.rejected
-  //   this.deps.rejecter && this.deps.rejecter(data)
-  // })
+  setTimeout(() => {
+    this.value = data
+    this.status = STATUS.rejected
+    this.deps.rejecter ? this.deps.rejecter(data) : error(data)
+  })
 }
 
 class MyPromise {
@@ -51,22 +59,52 @@ class MyPromise {
   then (resolver, rejecter) {
     return new MyPromise((resolve, reject) => {
       const succeed = data => {
-        const result = resolver(data)
+        try {
+          if (!isFunc(resolver)) {
+            resolve(data)
+          } else {
+            const result = resolver(data)
 
-        if (result instanceof MyPromise) {
-          result.then(resolve, rejecter)
-        } else {
-          resolve(result)
+            if (result instanceof MyPromise) {
+              result.then(resolve, reject)
+            } else {
+              resolve(result)
+            }
+          }
+        } catch (err) {
+          reject(err)
+        }
+      }
+
+      const failed = data => {
+        try {
+          if (!isFunc(rejecter)) {
+            reject(data)
+          } else {
+            const result = rejecter(data)
+
+            if (result instanceof MyPromise) {
+              result.then(resolve, reject)
+            } else {
+              resolve(result)
+            }
+          }
+        } catch (err) {
+          reject(err)
         }
       }
 
       switch (this.status) {
         case STATUS.pending:
           this.deps.resolver = succeed
+          this.deps.rejecter = failed
           break
         case STATUS.resolved:
           succeed(this.value)
           break
+        case STATUS.rejected:
+          failed(this.value)
+          break  
       }
     })
   }
