@@ -76,11 +76,29 @@ function test4 (Promise) {
   }).then('', console.log)
 }
 
-// 特殊情况的Promise resolve
+// 特殊情况1 resolve Promise - 需要在resolve时判断是否是Promise
 function test5 (Promise) {
-  let p1 = arg => new Promise(resolve => setTimeout(resolve, 300, arg))
+  let p1 = arg => new Promise(resolve => setTimeout(resolve, 500, arg))
+  console.log('start')
   new Promise(resolve => resolve(p1('123'))).then(console.log)
 }
+
+// 特殊情况2 多个then - 需要把成功和失败回调作为数组
+function test6 (Promise) {
+  let p1 = new Promise(resolve => setTimeout(resolve, 500, 'hello'))
+
+  setTimeout(() => {
+    p1.then(() => console.log('123'))
+    p1.then(() => console.log('234'))
+  })
+}
+
+function test (Promise) {
+  let p1 = new Promise(res => res()).then(() => p1)
+}
+
+test(MyPromise)
+// test(Promise)
 
 // test1(MyPromise)
 // test1(Promise)
@@ -94,5 +112,8 @@ function test5 (Promise) {
 // test4(MyPromise)
 // test4(Promise)
 
-test5(MyPromise)
+// test5(MyPromise)
 // test5(Promise)
+
+// test6(MyPromise)
+// test6(Promise)

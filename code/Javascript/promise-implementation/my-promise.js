@@ -16,25 +16,46 @@ function error (err) {
   console.error(`Uncaught Promise Error "${err}"`)
 }
 
+function rejectOwn () {
+  throw new TypeError("can't resolve own")
+}
+
 function resolveCallback (data) {
   if (this.status !== STATUS.pending) return
 
-  // process.nextTick(() => {
-  setTimeout(() => {
-    this.value = data
-    this.status = STATUS.resolved
-    this.deps.resolver && this.deps.resolver(data)
-  })
+  const run = () => {
+    if (data instanceof MyPromise) {
+      data.then(
+        resolveCallback.bind(this),
+        rejecteCallback.bind(this)
+      )
+    } else {
+      this.value = data
+      this.status = STATUS.resolved
+      let cb 
+      while (cb = this.resolveCallbacks.shift()) {
+        cb(data)
+      }
+    }
+  }
+
+  setTimeout(run)
 }
 
 function rejecteCallback (data) {
   if (this.status !== STATUS.pending) return
 
-  setTimeout(() => {
+  const run = () => {
     this.value = data
     this.status = STATUS.rejected
-    this.deps.rejecter ? this.deps.rejecter(data) : error(data)
-  })
+    error(data)
+    let cb 
+    while (cb = this.rejecteCallbacks.shift()) {
+      cb(data)
+    }
+  }
+
+  setTimeout(run)
 }
 
 class MyPromise {
@@ -42,7 +63,8 @@ class MyPromise {
   constructor (fn) {
     this.id = id++
     this.status = STATUS.pending
-    this.deps = {}
+    this.resolveCallbacks = []
+    this.rejecteCallbacks = []
     this.value = undefined
 
     try {
@@ -82,7 +104,7 @@ class MyPromise {
             reject(data)
           } else {
             const result = rejecter(data)
-
+            
             if (result instanceof MyPromise) {
               result.then(resolve, reject)
             } else {
@@ -96,15 +118,15 @@ class MyPromise {
 
       switch (this.status) {
         case STATUS.pending:
-          this.deps.resolver = succeed
-          this.deps.rejecter = failed
+          this.resolveCallbacks.push(succeed)
+          this.rejecteCallbacks.push(failed)
           break
         case STATUS.resolved:
-          succeed(this.value)
+          setTimeout(succeed, this.value)
           break
         case STATUS.rejected:
-          failed(this.value)
-          break  
+          setTimeout(failed, this.value)
+          break
       }
     })
   }
@@ -112,5 +134,15 @@ class MyPromise {
 }
 
 module.exports = {
-  MyPromise
+  MyPromise,
+  deferred: () => {
+    const result = {}
+
+    result.promise = new MyPromise((resolve, reject) => {
+      result.resolve = resolve
+      result.reject = reject
+    })
+
+    return result
+  },
 }
