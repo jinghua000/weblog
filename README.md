@@ -15,12 +15,12 @@
 - [cors](./docs/HTTP/cors.md)  
 - [gzip](./docs/HTTP/gzip.md)  
 
-### Javascript  
-- [currying](./docs/Javascript/currying.md)  
-- [debounce-and-throttle](./docs/Javascript/debounce-and-throttle.md)  
-- [lazyload-js](./docs/Javascript/lazyload-js.md)  
-- [publish-subscribe](./docs/Javascript/publish-subscribe.md)  
-- [todo-promise-without-promise](./docs/Javascript/todo-promise-without-promise.md)  
+### JavaScript  
+- [currying](./docs/JavaScript/currying.md)  
+- [debounce-and-throttle](./docs/JavaScript/debounce-and-throttle.md)  
+- [lazyload-js](./docs/JavaScript/lazyload-js.md)  
+- [promise-implementation](./docs/JavaScript/promise-implementation.md)  
+- [publish-subscribe](./docs/JavaScript/publish-subscribe.md)  
 
 ### Node  
 - [simple-client-hot-reload](./docs/Node/simple-client-hot-reload.md)  
