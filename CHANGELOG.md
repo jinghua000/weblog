@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-08-19
+
+- [promise-implementation](./docs/JavaScript/promise-implementation.md)  
+
 ### 2020-08-06
 
 - [dynamic-programming](./docs/Algorithm/dynamic-programming.md)  
