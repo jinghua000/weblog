@@ -1,4 +1,4 @@
-# simple-hot-reload (简单热重载)
+# simple-hot-reload (简单服务端热重载)
 
 ## 是什么
 
