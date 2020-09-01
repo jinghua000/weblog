@@ -45,7 +45,7 @@ const add = x => num => num + x
 [1, 2, 3].map(add(3)) // => 不愧是更聪明的选手！
 ```
 
-上述的这个`add`函数，大致就是[shadow-fns](https://github.com/jinghua000/shadow-fns/blob/master/doc/README.md#add)这个函数库中`add`函数的实现思路。
+上述的这个`add`函数，大致就是之前自己写的[shadow-fns](https://github.com/jinghua000/shadow-fns/blob/master/doc/README.md#add)这个函数库中`add`函数的实现思路。
 
 ## 更多
 

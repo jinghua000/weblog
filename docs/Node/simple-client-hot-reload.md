@@ -1,4 +1,4 @@
-# simple-client-hot-reload (简单前端热重载)
+# simple-client-hot-reload (简单客户端热重载)
 
 ## 是什么/为什么
 

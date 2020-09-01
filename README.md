@@ -3,32 +3,32 @@
 用来记录一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。  
 
 ### Algorithm  
-- [dynamic-programming-ext](./docs/Algorithm/dynamic-programming-ext.md)  
-- [dynamic-programming](./docs/Algorithm/dynamic-programming.md)  
+- [动态规划-附加](./docs/Algorithm/dynamic-programming-ext.md)  
+- [动态规划](./docs/Algorithm/dynamic-programming.md)  
 
 ### CSS  
-- [css-hot-update](./docs/CSS/css-hot-update.md)  
-- [theme](./docs/CSS/theme.md)  
+- [css热更新](./docs/CSS/css-hot-update.md)  
+- [切换主题](./docs/CSS/theme.md)  
 
 ### HTTP  
-- [browser-cache](./docs/HTTP/browser-cache.md)  
-- [cors](./docs/HTTP/cors.md)  
+- [浏览器缓存](./docs/HTTP/browser-cache.md)  
+- [Cross-Orgin Resource Sharing](./docs/HTTP/cors.md)  
 - [gzip](./docs/HTTP/gzip.md)  
 
 ### JavaScript  
-- [currying](./docs/JavaScript/currying.md)  
-- [debounce-and-throttle](./docs/JavaScript/debounce-and-throttle.md)  
-- [lazyload-js](./docs/JavaScript/lazyload-js.md)  
-- [promise-implementation](./docs/JavaScript/promise-implementation.md)  
-- [publish-subscribe](./docs/JavaScript/publish-subscribe.md)  
+- [柯里化](./docs/JavaScript/currying.md)  
+- [防抖与节流](./docs/JavaScript/debounce-and-throttle.md)  
+- [懒加载js](./docs/JavaScript/lazyload-js.md)  
+- [实现Promise](./docs/JavaScript/promise-implementation.md)  
+- [发布订阅](./docs/JavaScript/publish-subscribe.md)  
 
 ### Node  
-- [simple-client-hot-reload](./docs/Node/simple-client-hot-reload.md)  
-- [simple-hmr](./docs/Node/simple-hmr.md)  
-- [simple-hot-reload](./docs/Node/simple-hot-reload.md)  
-- [simple-pack](./docs/Node/simple-pack.md)  
-- [webpack-and-rollup](./docs/Node/webpack-and-rollup.md)  
+- [简单客户端热重载](./docs/Node/simple-client-hot-reload.md)  
+- [简单模块热替换](./docs/Node/simple-hmr.md)  
+- [简单服务端热重载](./docs/Node/simple-hot-reload.md)  
+- [简易打包](./docs/Node/simple-pack.md)  
+- [webpack与rollup一点对比](./docs/Node/webpack-and-rollup.md)  
 
 ### Ruby  
-- [heredocs](./docs/Ruby/heredocs.md)  
-- [proc-to-lambda](./docs/Ruby/proc-to-lambda.md)
+- [多行字符串](./docs/Ruby/heredocs.md)  
+- [proc转lambda](./docs/Ruby/proc-to-lambda.md)
