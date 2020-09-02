@@ -1,4 +1,4 @@
-# webpack-and-rollup (webpack与rollup一点对比)
+# webpack-and-rollup (webpack与rollup的一点对比)
 
 ## 是什么
 

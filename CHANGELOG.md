@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-09-02
+
+- [简易reactivity](./docs/Vue/reactivity.md)
+
 ### 2020-08-19
 
 - [实现Promise](./docs/JavaScript/promise-implementation.md)  
@@ -42,6 +46,6 @@
 - [简单客户端热重载](./docs/Node/simple-client-hot-reload.md)  
 - [简单服务端热重载](./docs/Node/simple-hot-reload.md)  
 - [简易打包](./docs/Node/simple-pack.md)  
-- [webpack与rollup一点对比](./docs/Node/webpack-and-rollup.md)  
+- [webpack与rollup的一点对比](./docs/Node/webpack-and-rollup.md)  
 - [多行字符串](./docs/Ruby/heredocs.md)  
 - [proc转lambda](./docs/Ruby/proc-to-lambda.md)
