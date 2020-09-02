@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-09-02
+
+- [简易reactivity](./docs/Vue/reactivity.md)
+
 ### 2020-08-19
 
 - [实现Promise](./docs/JavaScript/promise-implementation.md)  
