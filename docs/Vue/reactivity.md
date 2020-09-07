@@ -1,4 +1,4 @@
-# simple-reactivity (简易reactivity)
+# simple-reactivity (Vue3 reactivity模块的简易实现)
 
 ## 是什么
 

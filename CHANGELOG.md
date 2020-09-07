@@ -2,11 +2,11 @@
 
 ### 2020-09-02
 
-- [简易reactivity](./docs/Vue/reactivity.md)
+- [Vue3 reactivity模块的简易实现](./docs/Vue/reactivity.md)
 
 ### 2020-08-19
 
-- [实现Promise](./docs/JavaScript/promise-implementation.md)  
+- [手动实现Promise](./docs/JavaScript/promise-implementation.md)  
 
 ### 2020-08-06
 
@@ -32,20 +32,20 @@
 
 ### 2020-06-22
 
-- [懒加载js](./docs/JavaScript/lazyload-js.md)  
+- [懒加载js原理](./docs/JavaScript/lazyload-js.md)  
 
 ### 2020-06-12
 
-- [简单模块热替换](./docs/Node/simple-hmr.md)  
+- [webpack模块热替换的简单实现](./docs/Node/simple-hmr.md)  
 
 ### before
 
-- [柯里化](./docs/JavaScript/currying.md)  
+- [函数的柯里化](./docs/JavaScript/currying.md)  
 - [防抖与节流](./docs/JavaScript/debounce-and-throttle.md)  
 - [发布订阅](./docs/JavaScript/publish-subscribe.md)  
-- [简单客户端热重载](./docs/Node/simple-client-hot-reload.md)  
-- [简单服务端热重载](./docs/Node/simple-hot-reload.md)  
-- [简易打包](./docs/Node/simple-pack.md)  
+- [客户端热重载的简单实现](./docs/Node/simple-client-hot-reload.md)  
+- [服务端热重载的简单实现](./docs/Node/simple-hot-reload.md)  
+- [webpack打包原理](./docs/Node/simple-pack.md)  
 - [webpack与rollup的一点对比](./docs/Node/webpack-and-rollup.md)  
 - [多行字符串](./docs/Ruby/heredocs.md)  
 - [proc转lambda](./docs/Ruby/proc-to-lambda.md)

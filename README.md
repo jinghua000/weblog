@@ -7,7 +7,7 @@
 - [动态规划](./docs/Algorithm/dynamic-programming.md)  
 
 ### CSS  
-- [css热更新](./docs/CSS/css-hot-update.md)  
+- [css热更新原理](./docs/CSS/css-hot-update.md)  
 - [切换主题](./docs/CSS/theme.md)  
 
 ### HTTP  
@@ -16,17 +16,17 @@
 - [gzip](./docs/HTTP/gzip.md)  
 
 ### JavaScript  
-- [柯里化](./docs/JavaScript/currying.md)  
+- [函数的柯里化](./docs/JavaScript/currying.md)  
 - [防抖与节流](./docs/JavaScript/debounce-and-throttle.md)  
-- [懒加载js](./docs/JavaScript/lazyload-js.md)  
-- [实现Promise](./docs/JavaScript/promise-implementation.md)  
+- [懒加载js原理](./docs/JavaScript/lazyload-js.md)  
+- [手动实现Promise](./docs/JavaScript/promise-implementation.md)  
 - [发布订阅](./docs/JavaScript/publish-subscribe.md)  
 
 ### Node  
-- [简单客户端热重载](./docs/Node/simple-client-hot-reload.md)  
-- [简单模块热替换](./docs/Node/simple-hmr.md)  
-- [简单服务端热重载](./docs/Node/simple-hot-reload.md)  
-- [简易打包](./docs/Node/simple-pack.md)  
+- [客户端热重载的简单实现](./docs/Node/simple-client-hot-reload.md)  
+- [webpack模块热替换的简单实现](./docs/Node/simple-hmr.md)  
+- [服务端热重载的简单实现](./docs/Node/simple-hot-reload.md)  
+- [webpack打包原理](./docs/Node/simple-pack.md)  
 - [webpack与rollup的一点对比](./docs/Node/webpack-and-rollup.md)  
 
 ### Ruby  
@@ -34,4 +34,4 @@
 - [proc转lambda](./docs/Ruby/proc-to-lambda.md)  
 
 ### Vue  
-- [简易reactivity](./docs/Vue/reactivity.md)
+- [Vue3 reactivity模块的简易实现](./docs/Vue/reactivity.md)

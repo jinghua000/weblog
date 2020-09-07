@@ -1,4 +1,4 @@
-# simple-pack (简易打包)
+# simple-pack (webpack打包原理)
 
 ## 前言
 

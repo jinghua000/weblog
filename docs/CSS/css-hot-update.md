@@ -1,4 +1,4 @@
-# css-hot-update (css热更新)
+# css-hot-update (css热更新原理)
 
 ## 是什么
 

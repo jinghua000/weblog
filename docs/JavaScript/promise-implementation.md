@@ -1,4 +1,4 @@
-# promise-implementation (实现Promise)
+# promise-implementation (手动实现Promise)
 
 ## 目标
 
