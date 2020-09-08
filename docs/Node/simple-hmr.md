@@ -1,4 +1,4 @@
-# simple-hmr (简单模块热替换)
+# simple-hmr (webpack模块热替换的简单实现)
 
 > 这篇文章使用到了[`simple-pack`](./simple-pack.md)以及[`simple-client-hot-reload`](./simple-client-hot-reload.md)中的大量内容，重复部分将不在这篇文章中详细展开。
 

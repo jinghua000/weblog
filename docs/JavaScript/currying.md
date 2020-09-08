@@ -1,4 +1,4 @@
-# currying (柯里化)
+# currying (函数的柯里化)
 
 ## 是什么
 
