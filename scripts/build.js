@@ -18,11 +18,11 @@ fileSet.dirs.forEach(dir => {
   console.log(chalk.yellow(`category - ${getFolderName(dir)}`))
 
   fileSet.files.filter(f.includes(dir)).forEach(file => {
+    if (!file.endsWith('.md')) { return }
 
     const fileName = getFileChineseTitle(file)
     data.push(`- ${link(fileName, file)}`)
     console.log(chalk.magenta(`article title - ${fileName}`))
-
   })
 })
 

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #textarea {
+      width: 400px;
+      height: 200px;
+      font-size: 14px;
+    }
+    #behind-you {
+      position: absolute;
+      font-size: 14px;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <textarea id="textarea"></textarea>
+  <span id="behind-you">我在你后面(￣▽￣)</span>
+</body>
+<script>
+  const textareaDOM = document.getElementById('textarea')
+  const behindDOM = document.getElementById('behind-you')
+
+  textareaDOM.addEventListener('input', async () => {
+    const { left, top } = await getpos(textareaDOM)
+    behindDOM.style.left = left + 'px'
+    behindDOM.style.top = top + 'px'
+  })
+
+  // ==========分割线==========
+
+  const MirrorMap = new WeakMap()
+  function getpos (dom) {
+    let pre, span
+    // 如果有创建过对应DOM就使用以前的，否则就创建新的
+    if (MirrorMap.has(dom)) {
+      [pre, span] = MirrorMap.get(dom)
+    } else {
+      [pre, span] = initializeDOM(dom)
+      MirrorMap.set(dom, [pre, span])
+    }
+
+    const domStyle = getComputedStyle(dom)
+    pre.style.width = domStyle.width
+    pre.style.fontSize = domStyle.fontSize
+    span.style.fontSize = domStyle.fontSize
+
+    pre.textContent = dom.value.slice(0, dom.selectionEnd) + ' '
+    pre.appendChild(span)
+
+    dom.parentNode.appendChild(pre)
+
+    const result = {
+      left: dom.offsetLeft + span.offsetLeft,
+      top: dom.offsetTop + span.offsetTop,
+    }
+
+    dom.parentNode.removeChild(pre)
+
+    return new Promise(resolve => {
+      setTimeout(() => {
+        result.top -= dom.scrollTop
+        resolve(result)
+      })
+    })
+  }
+
+  function initializeDOM (dom) {
+    const pre = document.createElement('pre')
+    const span = document.createElement('span')
+
+    pre.style.wordBreak = 'break-all'
+    pre.style.whiteSpace = 'pre-wrap'
+    pre.style.position = 'fixed'
+    pre.style.zIndex = '-9999'
+    pre.style.left = '-9999px'
+    span.textContent = '|'
+
+    return [pre, span]
+  }
+</script>
+</html>

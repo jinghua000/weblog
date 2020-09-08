@@ -1,8 +1,12 @@
 # Changelog
 
+### 2020-09-08
+
+- [获取输入框中的光标位置](./docs/HTML/caret-position.md)  
+
 ### 2020-09-02
 
-- [Vue3 reactivity模块的简易实现](./docs/Vue/reactivity.md)
+- [Vue3 reactivity模块的简易实现](./docs/Vue/reactivity.md)  
 
 ### 2020-08-19
 
