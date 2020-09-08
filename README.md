@@ -10,6 +10,9 @@
 - [css热更新原理](./docs/CSS/css-hot-update.md)  
 - [切换主题](./docs/CSS/theme.md)  
 
+### HTML  
+- [获取输入框中的光标位置](./docs/HTML/caret-position.md)  
+
 ### HTTP  
 - [浏览器缓存](./docs/HTTP/browser-cache.md)  
 - [Cross-Orgin Resource Sharing](./docs/HTTP/cors.md)  
