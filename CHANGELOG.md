@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-09-09
+
+- [css对于重排/回流以及重绘的影响](./docs/CSS/css-trigger-render.md)  
+
 ### 2020-09-08
 
 - [获取输入框中的光标位置](./docs/HTML/caret-position.md)  
