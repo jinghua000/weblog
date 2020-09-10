@@ -1,6 +1,6 @@
 # Changelog
 
-### 2020-09-09
+### 2020-09-10
 
 - [css对于重排/回流以及重绘的影响](./docs/CSS/css-trigger-render.md)  
 
