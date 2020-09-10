@@ -1,6 +1,6 @@
 # weblog
 
-用来记录一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。  
+用来记录一些学习过程中知识，特点是一定有相应代码的实现，发布顺序参考[Changelog](./CHANGELOG.md)。  
 
 ### Algorithm  
 - [动态规划-附加](./docs/Algorithm/dynamic-programming-ext.md)  
@@ -8,6 +8,7 @@
 
 ### CSS  
 - [css热更新原理](./docs/CSS/css-hot-update.md)  
+- [css对于重排/回流以及重绘的影响](./docs/CSS/css-trigger-render.md)  
 - [切换主题](./docs/CSS/theme.md)  
 
 ### HTML  

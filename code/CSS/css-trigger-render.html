@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #div {
+      animation: transform-movement 3.2s infinite;
+      /* animation: position-movement 3.2s infinite; */
+      /* animation: background-animation 3.2s infinite; */
+      position: absolute;
+      left: 50px;
+      top: 50px;
+      height: 100px;
+      width: 100px;
+      background-color: lightblue;
+    }
+    @keyframes position-movement {
+      0% {
+        left: 50px;
+        top: 50px;
+      }
+      25% {
+        left: 250px;
+        top: 50px;
+      }
+      50% {
+        left: 250px;
+        top: 250px;
+      }
+      75% {
+        left: 50px;
+        top: 250px;
+      }
+    }
+    @keyframes transform-movement {
+      0% {
+        transform: translate(0, 0);
+      }
+      25% {
+        transform: translate(200px, 0);
+      }
+      50% {
+        transform: translate(200px, 200px);
+      }
+      75% {
+        transform: translate(0, 200px);
+      }
+    }
+    @keyframes background-animation {
+      0% {
+        background-color: lightblue;
+      }
+      25% {
+        background-color: lightcoral;
+      }
+      50% {
+        background-color: lightseagreen;
+      }
+      75% {
+        background-color: lightsalmon;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id=div></div>
+</body>
+</html>
