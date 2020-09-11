@@ -20,6 +20,7 @@
 - [gzip](./docs/HTTP/gzip.md)  
 
 ### JavaScript  
+- [call, apply, bind的简易实现](./docs/JavaScript/call-apply-bind.md)  
 - [函数的柯里化](./docs/JavaScript/currying.md)  
 - [防抖与节流](./docs/JavaScript/debounce-and-throttle.md)  
 - [懒加载js原理](./docs/JavaScript/lazyload-js.md)  
