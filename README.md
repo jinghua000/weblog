@@ -26,6 +26,7 @@
 - [懒加载js原理](./docs/JavaScript/lazyload-js.md)  
 - [手动实现Promise](./docs/JavaScript/promise-implementation.md)  
 - [发布订阅](./docs/JavaScript/publish-subscribe.md)  
+- [new的简易实现](./docs/JavaScript/simple-new.md)  
 
 ### Node  
 - [客户端热重载的简单实现](./docs/Node/simple-client-hot-reload.md)  
