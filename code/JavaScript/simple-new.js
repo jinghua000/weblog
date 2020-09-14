@@ -1,4 +1,4 @@
-'use strcit'
+'use strict'
 
 function Animal (name, age) {
   this.name = name

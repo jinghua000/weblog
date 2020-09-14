@@ -17,7 +17,7 @@
 基础代码如下
 
 ```js
-'use strcit'
+'use strict'
 
 const STATUS = {
   pending: 0,
@@ -270,7 +270,7 @@ promises-aplus-tests my-promise.js
 完整的代码
 
 ```js
-'use strcit'
+'use strict'
 
 const STATUS = {
   pending: 0,
