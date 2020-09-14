@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-09-14
+
+- [call, apply, bind的简易实现](./docs/JavaScript/call-apply-bind.md)  
+
 ### 2020-09-10
 
 - [css对于重排/回流以及重绘的影响](./docs/CSS/css-trigger-render.md)  
