@@ -1,6 +1,6 @@
 # weblog
 
-用来记录一些学习过程中知识，特点是一定有相应代码的实现，发布顺序参考[Changelog](./CHANGELOG.md)。  
+用来记录一些学习过程中整理的知识，特点是一定有相应代码的实现，发布顺序参考[Changelog](./CHANGELOG.md)。  
 
 ### Algorithm  
 - [动态规划-附加](./docs/Algorithm/dynamic-programming-ext.md)  
@@ -20,6 +20,7 @@
 - [gzip](./docs/HTTP/gzip.md)  
 
 ### JavaScript  
+- [call, apply, bind的简易实现](./docs/JavaScript/call-apply-bind.md)  
 - [函数的柯里化](./docs/JavaScript/currying.md)  
 - [防抖与节流](./docs/JavaScript/debounce-and-throttle.md)  
 - [懒加载js原理](./docs/JavaScript/lazyload-js.md)  
