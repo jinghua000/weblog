@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Router Mode</title>
+</head>
+<body>
+  <div id="router-view">
+    default
+  </div>
+  <a href="#/foo">foo</a>
+  <a href="#/bar">bar</a>
+  <!-- <a href="/foo">foo</a>
+  <a href="/bar">bar</a> -->
+</body>
+<script>
+  const RouterMap = {
+    'foo': 'this is foo',
+    'bar': 'this is bar',
+  }
+
+  useHashRouter()
+  function useHashRouter () {
+    window.onhashchange = renderHashRouter
+    window.onload = renderHashRouter
+  }
+
+  // useHistoryRouter()
+  function useHistoryRouter () {
+    // ...
+  }
+
+  function renderHashRouter () {
+    render(
+      window.location.hash.slice(2)
+    )
+  }
+
+  function render (routerName) {
+    document.getElementById('router-view').textContent = 
+      RouterMap[routerName] || 'default'
+  }
+</script>
+</html>
