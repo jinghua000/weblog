@@ -1,4 +1,4 @@
-'use strcit'
+'use strict'
 
 const STATUS = {
   pending: 0,

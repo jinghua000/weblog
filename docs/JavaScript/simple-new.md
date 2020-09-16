@@ -44,7 +44,7 @@ function mynew (target, ...args) {
 然后进行测试一下。
 
 ```js
-'use strcit'
+'use strict'
 
 function Animal (name) {
   this.name = name
