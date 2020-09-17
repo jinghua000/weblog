@@ -6,13 +6,13 @@
   <title>Router Mode</title>
 </head>
 <body>
-  <div id="router-view">
-    default
-  </div>
-  <a href="#/foo">foo</a>
+  <div id="router-view"></div>
+  <!-- <a href="#/foo">foo</a>
   <a href="#/bar">bar</a>
-  <!-- <a href="/foo">foo</a>
-  <a href="/bar">bar</a> -->
+  <a href="#/404">404</a> -->
+  <a href="/foo">foo</a>
+  <a href="/bar">bar</a>
+  <a href="/404">404</a>
 </body>
 <script>
   const RouterMap = {
@@ -20,23 +20,44 @@
     'bar': 'this is bar',
   }
 
-  useHashRouter()
+  // useHashRouter()
   function useHashRouter () {
     window.onhashchange = renderHashRouter
     window.onload = renderHashRouter
   }
 
-  // useHistoryRouter()
+  useHistoryRouter()
   function useHistoryRouter () {
-    // ...
+    addEvents()
+    window.onload = renderHistoryRouter
+    window.onpopstate = renderHistoryRouter
+  }
+
+  function addEvents () {
+    document.querySelectorAll('a').forEach(elem => {
+      elem.onclick = () => {
+        history.pushState({}, '', elem.href)
+        renderHistoryRouter()
+        return false
+      }
+    })
+  }
+
+  function renderHistoryRouter () {
+    // 这里为了方便没有做边界处理
+    render(
+      window.location.href.split('/').slice(-1)[0]
+    )
   }
 
   function renderHashRouter () {
+    // 为了方便考虑这里没有去做边界处理
     render(
       window.location.hash.slice(2)
     )
   }
 
+  // 渲染内容 路由表没有配置则返回默认文本
   function render (routerName) {
     document.getElementById('router-view').textContent = 
       RouterMap[routerName] || 'default'
