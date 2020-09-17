@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-09-17
+
+- [history和hash模式路由的简易实现](./docs/Vue/router-mode.md)  
+
 ### 2020-09-14
 
 - [new的简易实现](./docs/JavaScript/simple-new.md)  

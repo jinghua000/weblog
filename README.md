@@ -40,4 +40,5 @@
 - [proc转lambda](./docs/Ruby/proc-to-lambda.md)  
 
 ### Vue  
-- [Vue3 reactivity模块的简易实现](./docs/Vue/reactivity.md)
+- [Vue3 reactivity模块的简易实现](./docs/Vue/reactivity.md)  
+- [history和hash模式路由的简易实现](./docs/Vue/router-mode.md)
