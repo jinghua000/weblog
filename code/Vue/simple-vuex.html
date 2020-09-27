@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>state-store</title>
+</head>
+<body>
+  <div id="app" style="text-align: center;">
+    {{ count }}
+    <br>
+    <button @click="add">Add</button>
+  </div>
+</body>
+<script type="module">
+  import { 
+    createApp, 
+    reactive 
+  } from 'https://cdn.jsdelivr.net/npm/vue@3.0.0/dist/vue.esm-browser.js'
+
+  const store = createStore({
+    state: {
+      count: 0,
+    },
+    mutations: {
+      add (state, payload) {
+        state.count += payload
+      }
+    }
+  })
+
+  function createStore (storeConfig) {
+    const state = reactive(storeConfig.state)
+
+    return {
+      state,
+      commit (mutationType, payload) {
+        storeConfig.mutations[mutationType](state, payload)
+      },
+    }
+  }
+
+  const App = {
+    computed: {
+      count: vm => store.state.count
+    },
+    methods: {
+      add () {
+        store.commit('add', 1)
+      },
+    },
+  }
+
+  createApp(App).mount('#app')
+</script>
+</html>
