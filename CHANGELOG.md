@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-09-29
+
+- [vuex的状态管理的简单实现](./docs/Vue/vuex-state-management.md)
+
 ### 2020-09-17
 
 - [history和hash模式路由的简易实现](./docs/Vue/router-mode.md)  
