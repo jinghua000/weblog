@@ -41,4 +41,5 @@
 
 ### Vue  
 - [Vue3 reactivity模块的简易实现](./docs/Vue/reactivity.md)  
-- [history和hash模式路由的简易实现](./docs/Vue/router-mode.md)
+- [history和hash模式路由的简易实现](./docs/Vue/router-mode.md)  
+- [vuex的状态管理的简单实现](./docs/Vue/vuex-state-management.md)
