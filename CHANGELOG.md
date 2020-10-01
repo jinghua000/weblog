@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-10-01
+
+- [Object.create的简易实现](./docs/JavaScript/object-create.md)  
+
 ### 2020-09-29
 
 - [vuex的状态管理的简单实现](./docs/Vue/vuex-state-management.md)
