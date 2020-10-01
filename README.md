@@ -24,6 +24,7 @@
 - [函数的柯里化](./docs/JavaScript/currying.md)  
 - [防抖与节流](./docs/JavaScript/debounce-and-throttle.md)  
 - [懒加载js原理](./docs/JavaScript/lazyload-js.md)  
+- [Object.create的简易实现](./docs/JavaScript/object-create.md)  
 - [手动实现Promise](./docs/JavaScript/promise-implementation.md)  
 - [发布订阅](./docs/JavaScript/publish-subscribe.md)  
 - [new的简易实现](./docs/JavaScript/simple-new.md)  
