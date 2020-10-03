@@ -66,4 +66,5 @@ console.log(Object.getPrototypeOf(bar) === foo) // => true
 
 ## 参考
 
+- [Object.create()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
 - [相关代码](../../code/Javascript/object-create.js)

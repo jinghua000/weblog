@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-10-03
+
+- [类继承的简易实现](./docs/JavaScript/class-inherit.md)  
+
 ### 2020-10-01
 
 - [Object.create的简易实现](./docs/JavaScript/object-create.md)  
