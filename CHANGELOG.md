@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-10-04
+
+- [Proxy与Object.defineProperty的区别](./docs/JavaScript/proxy-and-defineproperty.md)  
+
 ### 2020-10-03
 
 - [类继承的简易实现](./docs/JavaScript/class-inherit.md)  
