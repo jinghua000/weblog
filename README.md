@@ -21,6 +21,7 @@
 
 ### JavaScript  
 - [call, apply, bind的简易实现](./docs/JavaScript/call-apply-bind.md)  
+- [检查类型](./docs/JavaScript/check-types.md)  
 - [类继承的简易实现](./docs/JavaScript/class-inherit.md)  
 - [函数的柯里化](./docs/JavaScript/currying.md)  
 - [防抖与节流](./docs/JavaScript/debounce-and-throttle.md)  

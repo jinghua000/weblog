@@ -4,7 +4,9 @@ function foo () {
 }
 
 function bar () {}
-function baz () {}
+function baz () {
+  console.log('i am baz')
+}
 
 export const aa = 123
 export let bb = 234
