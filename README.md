@@ -27,6 +27,7 @@
 - [懒加载js原理](./docs/JavaScript/lazyload-js.md)  
 - [Object.create的简易实现](./docs/JavaScript/object-create.md)  
 - [手动实现Promise](./docs/JavaScript/promise-implementation.md)  
+- [Proxy与Object.defineProperty的区别](./docs/JavaScript/proxy-and-defineproperty.md)  
 - [发布订阅](./docs/JavaScript/publish-subscribe.md)  
 - [new的简易实现](./docs/JavaScript/simple-new.md)  
 
