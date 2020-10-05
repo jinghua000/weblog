@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-10-05
+
+- [检查类型](./docs/JavaScript/check-types.md)  
+
 ### 2020-10-04
 
 - [Proxy与Object.defineProperty的区别](./docs/JavaScript/proxy-and-defineproperty.md)  
