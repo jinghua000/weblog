@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>event-delegation</title>
+</head>
+<body style="display: flex; justify-content: center;">
+  <div>
+    <button id="btn">Add</button>
+  </div>
+  <ul id="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</body>
+<script>
+  let n = 3
+
+  const btn = document.getElementById('btn')
+  const list = document.getElementById('list')
+
+  btn.addEventListener('click', evt => {
+    const elem = document.createElement('li')
+    elem.textContent = ++n
+    list.appendChild(elem)
+  })
+
+  list.addEventListener('click', evt => {
+    evt.target.tagName === 'LI' 
+      && alert(evt.target.textContent)
+  })
+</script>
+</html>

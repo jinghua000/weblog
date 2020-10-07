@@ -2,6 +2,7 @@
 
 ### 2020-10-07 
 
+- [事件委托](./docs/HTML/event-delegation.md)  
 - [css盒模型](./docs/CSS/box-model.md)  
 
 ### 2020-10-05
