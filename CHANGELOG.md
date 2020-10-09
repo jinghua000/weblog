@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-10-09
+
+- [快速排序](./docs/Algorithm/quick-sort.md)  
+
 ### 2020-10-07 
 
 - [事件委托](./docs/HTML/event-delegation.md)  
