@@ -3,6 +3,7 @@
 用来记录一些学习过程中整理的知识，特点是一定有相应代码的实现，发布顺序参考[Changelog](./CHANGELOG.md)。  
 
 ### Algorithm  
+- [二叉树的前，中，后，层序遍历](./docs/Algorithm/binary-tree-traversal.md)  
 - [动态规划-附加](./docs/Algorithm/dynamic-programming-ext.md)  
 - [动态规划](./docs/Algorithm/dynamic-programming.md)  
 - [快速排序](./docs/Algorithm/quick-sort.md)  
