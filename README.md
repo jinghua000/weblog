@@ -1,6 +1,6 @@
 # weblog
 
-用来记录一些学习过程中整理的知识，特点是一定有相应代码的实现，发布顺序参考[Changelog](./CHANGELOG.md)。  
+个人向，用来记录学习过程中整理的一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。    
 
 ### Algorithm  
 - [二叉树的前，中，后，层序遍历](./docs/Algorithm/binary-tree-traversal.md)  
@@ -24,6 +24,7 @@
 - [gzip](./docs/HTTP/gzip.md)  
 
 ### JavaScript  
+- [Array的flat, reduce, filter的简单实现](./docs/JavaScript/array-flat-reduce-filter.md)  
 - [call, apply, bind的简易实现](./docs/JavaScript/call-apply-bind.md)  
 - [检查类型](./docs/JavaScript/check-types.md)  
 - [类继承的简易实现](./docs/JavaScript/class-inherit.md)  
