@@ -2,6 +2,7 @@
 
 ### 2020-10-14
 
+- [Array的flat, reduce, filter的简单实现](./docs/JavaScript/array-flat-reduce-filter.md)  
 - [二叉树的前，中，后，层序遍历](./docs/Algorithm/binary-tree-traversal.md)  
 
 ### 2020-10-09
