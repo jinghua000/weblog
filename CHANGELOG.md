@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-10-14
+
+- [二叉树的前，中，后，层序遍历](./docs/Algorithm/binary-tree-traversal.md)  
+
 ### 2020-10-09
 
 - [快速排序](./docs/Algorithm/quick-sort.md)  
