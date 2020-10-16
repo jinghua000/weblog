@@ -10,9 +10,9 @@
 
 总而言之就来模拟并解决一个跨域问题吧。
 
-## 实现
+## 基本实现
 
-新建一个`HTML`页面，使用[`XMLHttpRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)假装发起一个`POST`请求。
+新建一个`HTML`页面，使用[`XMLHttpRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)发起一个`POST`请求。
 
 ```html
 <script>
@@ -140,6 +140,44 @@ POST
   res.setHeader('Access-Control-Max-Age', '10');
 
 ```
+
+## 设置Cookie
+
+如果是跨域请求，则默认不会把`cookie`带上，需要设置跨域认证，这个需要前后端配合实现，首先前端的话如果是使用`XMLHttpRequest`则需要设置`withCredentials`属性。
+
+```js
+// ...
+xhr.withCredentials = true
+```
+
+然后后端要加上对应的响应头`Access-Control-Allow-Credentials`以及必须把`Access-Control-Allow-Origin`里的允许源明确指定而不能使用`*`。
+
+```js
+res.setHeader('Access-Control-Allow-Credentials', true)
+res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:8080');
+```
+
+这样一来就可以看到在发送请求的时候带上了`Cookie`头。
+
+```
+Request:
+Cookie: foo=123
+```
+
+当然服务端也可以利用返回的头对客户端设置`Cookie`，比如。
+
+```js
+res.setHeader('Set-Cookie', ['bar=234; HttpOnly']);
+```
+
+在客户端看来就是
+
+```
+Response:
+Set-Cookie: bar=234; HttpOnly
+```
+
+然后就会设置到`Cookie`里，但如果前端请求时没有加上`withCredentials`，那这个响应头就不会生效。
 
 ## 总结
 

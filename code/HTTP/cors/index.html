@@ -14,12 +14,15 @@
   function request () {
     const xhr = new XMLHttpRequest()
 
-    xhr.open('PATCH', 'http://127.0.0.1:3001')
+    document.cookie = "foo=123"
+    xhr.open('POST', 'http://127.0.0.1:3001')
     xhr.setRequestHeader('Accept', 'application/json')
     // 假装取得json数据
     xhr.setRequestHeader('Content-Type', 'application/json');
     // 设定了自定义的Header
     xhr.setRequestHeader('My-Header', '123');
+    // 加上认证设置cookie
+    xhr.withCredentials = true
     xhr.onload = function (evt) {
       console.log(evt)
       console.log(xhr.response)
