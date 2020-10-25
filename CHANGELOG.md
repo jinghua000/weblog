@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-10-25
+
+- [链表中双指针的运用](./docs/Algorithm/cursor-of-linked-list.md)  
+
 ### 2020-10-14
 
 - [Array的flat, reduce, filter的简单实现](./docs/JavaScript/array-flat-reduce-filter.md)  
