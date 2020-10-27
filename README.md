@@ -36,6 +36,7 @@
 - [手动实现Promise](./docs/JavaScript/promise-implementation.md)  
 - [Proxy与Object.defineProperty的区别](./docs/JavaScript/proxy-and-defineproperty.md)  
 - [发布订阅](./docs/JavaScript/publish-subscribe.md)  
+- [async/await的简易实现](./docs/JavaScript/simple-async-await.md)  
 - [new的简易实现](./docs/JavaScript/simple-new.md)  
 
 ### Node  
