@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-10-28
+
+- [async/await的简易实现](./docs/JavaScript/simple-async-await.md)  
+
 ### 2020-10-25
 
 - [链表中双指针的运用](./docs/Algorithm/cursor-of-linked-list.md)  
