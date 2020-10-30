@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-10-30
+
+- [瀑布流效果](./docs/HTML/waterfall.md)  
+
 ### 2020-10-28
 
 - [async/await的简易实现](./docs/JavaScript/simple-async-await.md)  

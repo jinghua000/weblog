@@ -18,6 +18,7 @@
 ### HTML  
 - [获取输入框中的光标位置](./docs/HTML/caret-position.md)  
 - [事件委托](./docs/HTML/event-delegation.md)  
+- [瀑布流效果](./docs/HTML/waterfall.md)  
 
 ### HTTP  
 - [浏览器缓存](./docs/HTTP/browser-cache.md)  

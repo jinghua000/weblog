@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>waterfall</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #container {
+            position: relative;
+            width: 550px;
+        }
+        .item {
+            position: absolute;
+            text-align: center;
+            border: 1px solid black;
+            animation: fadeIn .5s;
+        }
+        @keyframes fadeIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0; 
+            }
+            to {
+                transform: translateY(0px);
+                opacity: 1; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">Add</button>
+    <br>
+    <div id="container">
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/shadow-fns/dist/shadow-fns.umd.min.js" ></script>
+<script>
+    // 每条瀑布的宽度
+    const WIDTH = 100
+    // 每个元素的间距
+    const GAP = 5
+    // 记录每条瀑布高度的数组，暂定一共5条
+    const TOPS = Array(5).fill(0)
+
+    document.getElementById('btn').onclick = () => {
+        // 获取插入的瀑布位置
+        const index = getIndex()
+        // 随机生成一个高度
+        const height = randomHeight()
+        // 根据位置生成一个新元素
+        const elem = createElement(index, height)
+
+        // 向容器内插入一个新元素
+        document.getElementById('container').append(elem)
+        // 更新对应瀑布的高度
+        TOPS[index] += height + GAP
+    }
+
+    function getIndex() {
+        return TOPS.indexOf(Math.min(...TOPS))
+    }
+
+    function createElement(index, height) {
+        const node = document.createElement('div')
+
+        node.className = 'item'
+        node.textContent = `${WIDTH} x ${height}`
+        node.style.width = WIDTH + 'px'
+        node.style.height = height + 'px'
+        node.style.left = index * (WIDTH + GAP) + 'px'
+        node.style.top = TOPS[index] + 'px'
+        node.style.backgroundColor = randomColor()
+
+        return node
+    }
+
+    function randomHeight () {
+        const [min, max] = [80, 200]
+        return Math.floor(Math.random() * (max - min)) + min
+    }
+
+    function randomColor () {
+        const [min, max] = [0, 255]
+        const fn = () => Math.floor(Math.random() * (max - min)) + min
+        return `rgb(${fn()}, ${fn()}, ${fn()})`
+    }
+
+</script>
+</html>
