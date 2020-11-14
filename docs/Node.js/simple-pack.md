@@ -1,4 +1,4 @@
-# simple-pack (webpack打包原理)
+# simple-pack (webpack打包的基本原理)
 
 ## 前言
 
@@ -436,4 +436,4 @@ open index.html
 - https://github.com/ronami/minipack
 - [babel](https://babeljs.io/)
 - [ast](https://astexplorer.net/)
-- [相关代码](../../code/Node/simple-pack)
+- [相关代码](../../code/Node.js/simple-pack)
