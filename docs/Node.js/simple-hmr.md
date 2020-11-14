@@ -1,6 +1,6 @@
-# simple-hmr (webpack模块热替换的简单实现)
+# simple-hmr (类似webpack模块热替换的简单实现)
 
-> 这篇文章使用到了[`simple-pack`](./simple-pack.md)以及[`simple-client-hot-reload`](./simple-client-hot-reload.md)中的大量内容，重复部分将不在这篇文章中详细展开。
+> 这篇文章使用到了[`webpack打包的基本原理`](./simple-pack.md)以及[`客户端热重载的简单实现`](./simple-client-hot-reload.md)中的大量内容，重复部分将不在这篇文章中详细展开。
 
 ## 是什么
 
@@ -122,7 +122,7 @@ export default 'bar'
 
 ### 1. 打包源文件
 
-这一步就是将所有`src/`里的`js`文件打包成一个`入口js文件`，参考之前的文章[`simple-pack`](./simple-pack.md)。
+这一步就是将所有`src/`里的`js`文件打包成一个`入口js文件`，参考之前的文章[`webpack打包的基本原理`](./simple-pack.md)。
 
 这里仅描述一些需要变化的点。
 
@@ -272,7 +272,7 @@ module.exports = {
 
 ### 2. 静态页面、WebSocket服务
 
-根据我们的需要，我们需要一个`WebSocket`服务来让页面与服务端交互，具体的可以参考之前的文章[`simple-client-hot-reload`](./simple-client-hot-reload.md)。
+根据我们的需要，我们需要一个`WebSocket`服务来让页面与服务端交互，具体的可以参考之前的文章[`客户端热重载的简单实现`](./simple-client-hot-reload.md)。
 
 需要注意的是在之前的文章里我们是通过直接在静态页面注入代码，但是这次因为我们直接是生成的打包的文件，所以注入代码就更为轻松了。
 
@@ -433,7 +433,7 @@ this is a component with foo and bar
 
 ![`simple-hmr-1`](../../assets/simple-hmr-1.jpg)
 
-好了，上面的内容事实上差不多算是对前两篇文章[`simple-pack`](./simple-pack.md)和[`simple-client-hot-reload`](./simple-client-hot-reload.md)的整合，总而言之先休息一会……  
+好了，上面的内容事实上差不多算是对前两篇文章[`webpack打包的基本原理`](./simple-pack.md)和[`客户端热重载的简单实现`](./simple-client-hot-reload.md)的整合，总而言之先休息一会……  
 
 好了，然后接下来终于要开始实现`hmr`了。
 
@@ -828,6 +828,6 @@ this is a component with foo 123 and bar
 ## 参考
 
 - [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/)
-- [`simple-pack`](./simple-pack.md)
-- [`simple-client-hot-reload`](./simple-client-hot-reload.md)
-- [相关代码](../../code/Node/simple-hmr)
+- [`webpack打包的基本原理`](./simple-pack.md)
+- [`客户端热重载的简单实现`](./simple-client-hot-reload.md)
+- [相关代码](../../code/Node.js/simple-hmr)

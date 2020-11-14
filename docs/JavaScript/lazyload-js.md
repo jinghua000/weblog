@@ -82,9 +82,9 @@ i am code
 
 ## 总结
 
-总而言之这次了解了一下最基本的按需加载的原理，结合`webpack`使用的话，参考之前的[`simple-pack`](../Node/simple-pack.md)这篇文章，在打包的时候把所有需要按需加载的文件分开打包成不同的`js`文件，然后通过`import`之类的自定义接口去按需加载这些内容，嘛，原理和打包是差不多的，这里就不再次去实现了，再见！
+总而言之这次了解了一下最基本的按需加载的原理，结合`webpack`使用的话，参考之前的[`webpack打包的基本原理`](../Node.js/simple-pack.md)这篇文章，在打包的时候把所有需要按需加载的文件分开打包成不同的`js`文件，然后通过`import`之类的自定义接口去按需加载这些内容，嘛，原理和打包是差不多的，这里就不再次去实现了，再见！
 
 ## 参考
 
-- [`simple-pack`](../Node/simple-pack.md)
+- [`webpack打包的基本原理`](../Node.js/simple-pack.md)
 - [相关代码](../../code/Javascript/lazyload-js)

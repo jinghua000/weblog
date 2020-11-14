@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-11-14
+
+- [堆的实现](./docs/Algorithm/heap-implementation.md)  
+
 ### 2020-10-30
 
 - [瀑布流效果](./docs/HTML/waterfall.md)  
@@ -99,16 +103,16 @@
 
 ### 2020-06-12
 
-- [webpack模块热替换的简单实现](./docs/Node/simple-hmr.md)  
+- [webpack模块热替换的简单实现](./docs/Node.js/simple-hmr.md)  
 
 ### before
 
 - [函数的柯里化](./docs/JavaScript/currying.md)  
 - [防抖与节流](./docs/JavaScript/debounce-and-throttle.md)  
 - [发布订阅](./docs/JavaScript/publish-subscribe.md)  
-- [客户端热重载的简单实现](./docs/Node/simple-client-hot-reload.md)  
-- [服务端热重载的简单实现](./docs/Node/simple-hot-reload.md)  
-- [webpack打包原理](./docs/Node/simple-pack.md)  
-- [webpack与rollup的一点对比](./docs/Node/webpack-and-rollup.md)  
+- [客户端热重载的简单实现](./docs/Node.js/simple-client-hot-reload.md)  
+- [服务端热重载的简单实现](./docs/Node.js/simple-hot-reload.md)  
+- [webpack打包原理](./docs/Node.js/simple-pack.md)  
+- [webpack与rollup的一点对比](./docs/Node.js/webpack-and-rollup.md)  
 - [多行字符串](./docs/Ruby/heredocs.md)  
 - [proc转lambda](./docs/Ruby/proc-to-lambda.md)

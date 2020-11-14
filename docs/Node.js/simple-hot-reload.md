@@ -179,4 +179,4 @@ function server () {
 
 - [chokidar](https://www.npmjs.com/package/chokidar)
 - [nodemon](https://www.npmjs.com/package/nodemon)
-- [相关代码](../../code/Node/simple-hot-reload)
+- [相关代码](../../code/Node.js/simple-hot-reload)

@@ -14,7 +14,7 @@
 
 ## 思路整理
 
-可以参考一下之前[simple-hot-reload](./simple-hot-reload.md)这个文章。
+可以参考一下之前[服务端热重载的简单实现](./simple-hot-reload.md)这个文章。
 
 先来把思路整理一下好了。首先需要去启动一个服务去代理原有的`静态文件`，然后同时监听这些文件，一旦文件有`变化`，则通知`前端页面`进行刷新。
 
@@ -258,4 +258,4 @@ something else... www
 
 - https://github.com/webpack/webpack-dev-server
 - https://github.com/tapio/live-server
-- [相关代码](../../code/Node/simple-client-hot-reload)
+- [相关代码](../../code/Node.js/simple-client-hot-reload)

@@ -4,7 +4,7 @@
 
 在我们使用[`webpack-dev-server`](https://github.com/webpack/webpack-dev-server)或者其他工具进行开发的时候，经常修改了`css`但是页面没有刷新就生效了，就是所谓的这个热更新效果。
 
-这次我们就稍微说明一下这个的原理（其实就很简单），具体的与后台文件修改关联起来的热更新前端页面的可以参考[`simple-client-hot-reload`](../Node/simple-client-hot-reload.md)以及[`simple-hmr`](../Node/simple-hmr.md)这两篇文章，这里就不演示了。
+这次我们就稍微说明一下这个的原理（其实就很简单），具体的与后台文件修改关联起来的热更新前端页面的可以参考[`客户端热重载的简单实现`](../Node.js/simple-client-hot-reload.md)以及[`类似webpack模块热替换的简单实现`](../Node.js/simple-hmr.md)这两篇文章，这里就不演示了。
 
 ## 准备
 
@@ -73,7 +73,7 @@ function change () {
 
 ## 参考
 
-- [`simple-hmr`](../Node/simple-hmr.md)
-- [`simple-client-hot-reload`](../Node/simple-client-hot-reload.md)
+- [`类似webpack模块热替换的简单实现`](../Node.js/simple-hmr.md)
+- [`客户端热重载的简单实现`](../Node.js/simple-client-hot-reload.md)
 - [`live-server`](https://github.com/tapio/live-server)
 - [相关代码](../../code/CSS/css-hot-update/index.html)
