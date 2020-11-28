@@ -1,6 +1,6 @@
 # weblog
 
-个人向，用来记录学习过程中整理的一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。    
+用来记录学习过程中整理的一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。    
 
 ### Algorithm  
 - [二叉树的前，中，后，层序遍历](./docs/Algorithm/binary-tree-traversal.md)  
@@ -8,6 +8,7 @@
 - [动态规划-附加](./docs/Algorithm/dynamic-programming-ext.md)  
 - [动态规划](./docs/Algorithm/dynamic-programming.md)  
 - [堆的实现](./docs/Algorithm/heap-implementation.md)  
+- [堆的运用](./docs/Algorithm/heap-utilizing.md)  
 - [快速排序](./docs/Algorithm/quick-sort.md)  
 
 ### CSS  
