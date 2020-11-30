@@ -266,6 +266,9 @@ console.log(heap.data)
 
 这次介绍了堆的基本概念，了解他是使用堆的基础！
 
+一般来说插入和删除之后调整堆的操作起的名字都会含有一个`heapify`单词，比如插入`heapify-up`，删除`heapify-down`。如果只有一种操作也可能会直接定义一个叫`heapify`的函数。
+
+另外删除操作看到的很多都是使用递归实现的，不过我个人觉得用迭代更容易理解，还能稍微降低空间复杂度。
 ## 参考
 
 - [leetcode Heap](https://leetcode-cn.com/tag/heap/)  
