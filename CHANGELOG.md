@@ -1,5 +1,9 @@
 # Changelog
 
+### 2020-12-01
+
+- [堆的运用](./docs/Algorithm/heap-utilizing.md)  
+
 ### 2020-11-14
 
 - [堆的实现](./docs/Algorithm/heap-implementation.md)  
