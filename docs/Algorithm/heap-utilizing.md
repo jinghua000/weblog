@@ -133,11 +133,148 @@ function swap(arr, index1, index2) {
 7    5 1
 ```
 
-然后之后获得了最大堆，之后执行我们之前整理出思路的第2到4步。一个个把最大的元素放到数组末尾最后再
+然后之后获得了最大堆，之后执行我们之前整理出思路的第2到4步。一个个把最大的元素放到数组末尾最后再把之前的数组整理成最大堆。
 
+```js
+function heapsort(arr) {
+    buildMaxHeap(arr) 
 
+    let cursor = arr.length - 1
+    while (cursor >= 0) { 
+        swap(arr, 0, cursor)
+        heapify(arr, cursor, 0) 
+        cursor--
+    }
 
+    return arr
+}
+```
+
+每次都让堆得大小减一，这样每次都能得到一个最大的元素。
+
+来测试一下。
+
+```js
+console.log(heapsort([9,8,6,7,5,4,3,1,2,10]))
+// => [1,2,3,4,5,6,7,8,9,10]
+```
+
+堆排序是原地排序，不稳定排序。空间复杂度为`O(1)`，时间复杂度为`O(nlogn)`。时间复杂度可以解释为对每一个元素进行了`heapify`，故复杂度为`n * logn`。
+
+## topK
+
+而堆的另外一个非常常用的用法就是`优先队列`，给普通队列的元素中再带上了优先级。比较通俗的语言可以解释为从最先满足某些条件的元素开始删除。
+
+topK可以解释为：
+
+**取得数组中最大的第k个元素**
+
+比如：
+
+```
+input: nums = [3,2,1,5,6,4], k = 2
+
+output: 5
+```
+
+因为5是整个数组中第二大的元素。
+
+### 整理思路
+
+最直观的思路排序之后再取第二个就好了，这样的复杂度是`O(nlogn)`。
+
+但这里因为我们需要的仅仅是第二个大的数字，所以其实没有必要完全的排序，只要创建一个长度为2的最小堆。最小的全部被去除之后，只剩倒数第二小的，也就是第二大的数字了。
+
+这样的算法理论上就是`O(nlogk)`，解释为每次需要对一个长度为k的堆做插入和删除操作，然后对所有元素执行这个操作复杂度为`n * logk`，优于整体排序。
+
+### 实现
+
+整体代码结构大概是这样。
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findKthLargest = function(nums, k) {
+    const heap = []
+
+    for (let i = 0; i < nums.length; i++) {
+        // 构建最小堆
+        push(nums[i])
+
+        // 如果堆的长度大于k，则删除第一个
+        if (heap.length > k) {
+            remove()
+        }
+    }
+
+    // 返回最小堆的第一个，即为倒数第k个最小数，即为第k个最大数
+    return heap[0]
+
+// ...
+```
+
+然后后面就实现`push`和`remove`这两个方法，就是入堆和出堆。
+
+```js
+// ...
+
+    function push(val) {
+        heap.push(val)
+
+        let index = heap.length - 1
+        while (index) {
+            let parentIndex = (index - 1) >> 1
+            let parent = heap[parentIndex]
+            let current = heap[index]
+
+            if (parent <= current) break
+            heap[parentIndex] = current
+            heap[index] = parent
+            index = parentIndex
+        }
+    }
+
+    function remove() {
+        heap[0] = heap.pop()
+
+        let index = null
+        let next = 0
+        let length = heap.length
+        while (index !== next) {
+            index = next
+
+            let left = (index << 1) + 1
+            let right = (index << 1) + 2
+
+            if (left < length && heap[left] < heap[next]) {
+                next = left
+            }
+            
+            if (right < length && heap[right] < heap[next]) {
+                next = right
+            }
+
+            ;[heap[index], heap[next]] = [heap[next], heap[index]]
+        }
+    }
+```
+
+这两个操作之前已经讲过很多了就不重复说明了，总而言之这样就成功的用比较好的方法处理了topK问题。
+
+> 当然这道题也可以用快速排序做，不过这次主要讲堆。
+
+题目的[地址](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)。
+
+## 总结
+
+堆总体算是一种比较复杂的数据结构，不过在优先队列中的运用可以有效的减少一些不必要消耗，看情况好好使用吧。
 ## 参考
 
+- [topK](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
+- [leetcode Heap](https://leetcode-cn.com/tag/heap/)  
 - [堆排序](https://sort.hust.cc/7.heapsort)
 - [heap sort](https://www.programiz.com/dsa/heap-sort#:~:text=%20How%20Heap%20Sort%20Works%3F%20%201%20Since,have%20the%20highest%20element%20at%20root.%20More%20)
+- [相关代码](../../code/Algorithm/heap-utilizing.js)
