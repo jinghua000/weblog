@@ -9,6 +9,7 @@
 - [动态规划](./docs/Algorithm/dynamic-programming.md)  
 - [堆的实现](./docs/Algorithm/heap-implementation.md)  
 - [堆的运用](./docs/Algorithm/heap-utilizing.md)  
+- [队列的实现](./docs/Algorithm/queue-implementation.md)  
 - [快速排序](./docs/Algorithm/quick-sort.md)  
 
 ### CSS  
