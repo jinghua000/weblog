@@ -1,5 +1,8 @@
 # Changelog
 
+### 2020-12-29
+- [队列的实现](./docs/Algorithm/queue-implementation.md)  
+
 ### 2020-12-01
 
 - [堆的运用](./docs/Algorithm/heap-utilizing.md)  
