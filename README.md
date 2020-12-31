@@ -3,6 +3,7 @@
 用来记录学习过程中整理的一些知识，发布顺序参考[Changelog](./CHANGELOG.md)。    
 
 ### Algorithm  
+- [回溯算法](./docs/Algorithm/backtracking.md)  
 - [二叉树的前，中，后，层序遍历](./docs/Algorithm/binary-tree-traversal.md)  
 - [链表中双指针的运用](./docs/Algorithm/cursor-of-linked-list.md)  
 - [动态规划-附加](./docs/Algorithm/dynamic-programming-ext.md)  
