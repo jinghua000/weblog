@@ -79,7 +79,7 @@ function sum(n) {
 }
 ```
 
-因为没有涉及到函数调用所以自然不会影响到调用栈，不过都这么写了为什么不直接用循环，下一个。
+因为没有涉及到函数调用所以自然不会影响到调用栈，不过都这么写了为什么不直接用循环累加，下一个。
 
 ## 使用任务队列
 
@@ -115,17 +115,37 @@ sum(1e5).then(console.log) // => 5000050000
 
 这样执行内部的步骤看上去像这样。
 
-1. stack: `[sum(1e5)]` - 第一个函数放入调用栈
-2. queue: `[sum(1e5 - 1)]` - 回调函数放入任务队列
+1. stack: `[sum(1e5)]` - 第一个函数放入调用栈并执行
+2. queue: `[sum(1e5 - 1)]` - 把回调函数放入任务队列
 3. stack: `[]` - 执行完毕调用栈中的函数，并移除
-4. stack: `[sum(1e5 - 1)]` - 从任务队列中取到第一个函数，放入调用栈
+4. stack: `[sum(1e5 - 1)]` - 从任务队列中取到第一个函数，放入调用栈并执行
 5. queue: `[sum(1e5 - 2)]` - 将下一个回调函数放入任务队列
 6. ...重复
 
 这样相当于每次调用栈只执行了一次`sum`函数，利用任务队列的特性解决了栈溢出的问题。
 
+## 尾调用优化
+
+在es6严格模式下，如果某个函数的最后一步是调用另一个函数，则会形成尾调用，具体的优化原理可以参考[阮一峰的文章](http://www.ruanyifeng.com/blog/2015/04/tail-call.html)。
+
+可以把上述的递归函数换一个写法如下所示：
+
+```js
+'use strict'
+
+function sum(n, result = 0) {
+    if (n === 1) return result + 1
+    return sum(n - 1, result + n)
+}
+
+console.log(sum(1e5)) // => 5000050000
+```
+
+不过上述代码目前只有在Safari浏览器能正常运行，其他的浏览器以及Node.js并不支持（至少是默认情况下）。
+
 ## 参考
 
+- [尾调用优化](http://www.ruanyifeng.com/blog/2015/04/tail-call.html)
 - [JavaScript 运行机制详解：再谈Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
 - [JavaScript Event Loop And Call Stack Explained](https://felixgerschau.com/javascript-event-loop-call-stack/)
 - [MDN - Concurrency model and the event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
