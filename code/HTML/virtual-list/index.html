@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            width: 250px;
+            height: 500px;
+            background: WhiteSmoke;
+        }
+
+        .item {
+            margin-bottom: 15px;
+            height: 50px;
+            background: lightblue;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+<script src="virtual-list.js"></script>
+<script>
+    function createItem(index) {
+        const node = document.createElement('div')
+        node.className = 'item'
+        node.textContent = '我是' + index
+        return node
+    }
+
+    const TOTAL_COUNT = 1e4
+    const data = Array(TOTAL_COUNT)
+    for (let i = 0; i < TOTAL_COUNT; i++) {
+        data[i] = createItem(i)
+    }
+
+    new VritualList(
+        document.getElementById('container'),
+        {
+            data,
+            maxCount: 20,
+            itemHeight: 65,
+        }
+    )
+</script>
+</html>
