@@ -1,5 +1,9 @@
 # Changelog
 
+### 2021-03-01
+
+- [位运算加减乘除](./docs/Algorithm/bitwise-calc.md)  
+
 ### 2021-02-25
 
 - [虚拟列表](./docs/HTML/virtual-list.md)  
