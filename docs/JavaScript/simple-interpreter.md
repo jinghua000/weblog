@@ -125,7 +125,7 @@ const Visitor = {
 
 根据`estree`的结构，`Program`节点的`body`属性是一个数组，每一个元素就是一句语句，我们把最后一句语句当做返回值，也方便我们调试。
 
-另外此时`typescript`的好处也显现出来了，可以帮我们联想出节点上的属性。而对于我们的要求计算`1 + 1`，我们还需要以下几种节点。
+另外此时`typescript`的好处也显现出来了，可以帮我们联想出节点上的属性。而对于我们的要求计算`1 + 2`，我们还需要以下几种节点。
 
 ```ts
 // ...
@@ -590,7 +590,18 @@ interface FunctionObject {
 // ...
 ```
 
-在函数调用前入栈，调用后出栈，这样在任何情况下我们就可以获得当前函数的状态了，然后在`BlockStatement`执行函数中做以下修改：
+在函数调用前入栈，调用后出栈，这样在任何情况下我们就可以获得当前函数的状态了，然后在`ReturnStatement`与`BlockStatement`执行函数中做以下修改：
+
+```diff
+// ...
+
+    ReturnStatement(node: ES.ReturnStatement, scope: Scope) {
++        callstack.current && (callstack.current.return = true)
+        return visit(node.argument, scope)
+    },
+
+// ...
+```
 
 ```diff
 // ...
